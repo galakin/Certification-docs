@@ -357,6 +357,9 @@ You must use a FIFO dead letter queue with a FIFO queue.\\
 
 AWS SQS has no limit on the messages stored queue
 
+We can increase the ammount od data on a SQS message with the \textbf{SQS Extended Client} over 256KB that laverage
+AWS S3 to store messages up to 2GB 
+
 \section{Amazon DynamoDB}
 DynamoDB is a \textbf{fast} and \textbf{flexible nonrelational database service }for any scale. DynamoDB enables customers 
 to offload the administrative burdens of operating and scaling distributed databases to AWS so that they don’t have to worry 
@@ -575,6 +578,9 @@ available yet, like the \textbf{PutItem} action\\
 DynamoDB Transitional Write is a "all-or-nothing" type of write operation in a DynamoDB 
 
 \section{Amazon ElastiCache}
+Amazon ElastiCache can be used to significantly improve latency and throughput for many \textbf{read-heavy application workloads} or 
+\textbf{compute-intensive workloads} by allowing you to store the objects that are often read in the cache.\\
+
 Amazon ElastiCache is a web service that streamlines deployment and running of Memcached or Redis protocol-compliant 
 caches in the cloud. ElastiCache improves application performance by allowing you to retrieve information from a fast, 
 managed, in-memory system instead of relying on slower disk-based systems.\\
@@ -2708,7 +2714,7 @@ requests to use the KMS key in cryptographic operations fail.\\
 When you perform an action that makes the KMS key unusable, there is no immediate effect on the EC2 instance or the attached EBS volumes. 
 Amazon EC2 uses the data key, not the KMS key, to encrypt all disk I/O while the volume is attached to the instance.\\
 
-\subsubsection{Encrypt EBS resources}
+\subsub??section{Encrypt EBS resources}
 You encrypt EBS volumes by enabling encryption, either using encryption by default or by enabling encryption when you create a volume that you 
 want to encrypt.\\
 When you encrypt a volume, you can specify the symmetric encryption KMS key to use to encrypt the volume. If you do not specify a KMS key, 
@@ -2797,6 +2803,7 @@ To use a customer managed KMS key, you must give users permission to use the KMS
 	\item Immutable
 \end{itemize}
 
+\section{ElasticBeanstalk}
 Rolling and Rolling with additional batch deployment policy are not suitable for the single
 instance environment, because they need a Elastic LoadBalancer (ELB) that attach and detach 
 the instances\\
@@ -2875,6 +2882,7 @@ to the Docker daemon on a container instance.\\
 Based of the kind of hw it's possible to differentiate the logic. To retrieve this metadata, the 
 application should launch a curl command to the following link: \textbf{http://169.254.169.254/latest/meta-data/}.\\
 
+
 \section{AWS SAM}
 AWS SAM applicat can be redeployed with the \textbf{build} and \textbf{deploy} command\\
 \textbf{Transform} operation are used on SAM model
@@ -2900,8 +2908,12 @@ Through AWS region
 \section{CloudFormation}
 The correct format for the CloudFormation \textbf{FindInMap} operation is:\\
 
+
 \centerline{!FindInMap[ MapName, TopLevelKey, SecondLevelKey ]}
-There is a \textbf{Dependency} section on CloudFormation templates
+There is a \textbf{Dependency} section on CloudFormation templates\\
+
+You can use the \textbf{Parameters} section to customize your templates. Parameters enable 
+you to input custom values to your template each time you create or update a stack.
 
 \section{AWS VPN}
 AWS Subnet allow VPN partitioning\\
@@ -2943,12 +2955,20 @@ Resources managed on the .ebextensions directory are deleted on environment chan
 
 AWS Beanstalk it's used to create and deploy web and mobile application\\
 
-Immutable deployment is the minimum config that mantain alive the older application on ElasticBeanstalk
+Immutable deployment is the minimum config that mantain alive the older application on ElasticBeanstalk\\
+
+If your AWS Elastic Beanstalk application performs operations or workflows that take a long time to complete, 
+you can offload those tasks to a dedicated worker environment. 
 
 \section{API Gateway}
 AWS API Gateway can access an internal cache\\
 AWS API Gateway can leverage AWS Lambda computational ability to run an external  authentication
-on the API Gateway
+on the API Gateway\\
+
+\textbf{MOCK}: This type of integration lets API Gateway return a response without sending the request further 
+to the backend. This is useful for API testing.\\
+
+In a \textbf{WebSocket API}, the client and the server can both send messages to each other at any time. 
 
 \section{AWS Budget}
 AWS Budget need a \textbf{minimum of 5 week} before it can show metrics extracted from budget and 
@@ -2960,8 +2980,16 @@ AWS S3 have the capacity to deny PutObject action for object uploaded and not en
 
 AWS S3 presigned-URL can be time limited with a min value of 1 minute and a maximum of 12 hours\\
 
+\textbf{Same-Region Replication (SRR)} and \textbf{Cross-Region Replication (CRR)} can be configured at 
+the S3 \textbf{bucket level}, a \textbf{shared prefix level}, or an \textbf{object level} using S3 object tags.\\
+
+Customers may use four mechanisms for controlling access to Amazon S3 resources: Identity and Access Management 
+(IAM) policies, bucket policies, Access Control Lists (ACLs), and Query String Authentication.\\
+
 \section{AWS RDS}
-One ore more read replicas on RDS could help on read-heavy operation
+One ore more read replicas on RDS could help on read-heavy operation.\\
+
+AWS RDS MySQL and PostGreSQL allot authentication with IAM Database Authentication
 
 \section{AWS CDK}
 AWS CDK could define AWS resources on different programming languages that suppord the AWS CDK 
@@ -2977,6 +3005,12 @@ IAM user are able, unless specifically denied, to create SSL/TLS certificate
 CodeCommit and CodeDeploy use appspec.yaml file on root dit to define build option
 and configuration.\\
 \textbf{ValidateService} is the last CodeDeploy hook available after an applicatin is installed and it's running
+
+\section{AWS CodeBuild}
+
+CodeBuild scales automatically, the organization does not have to do anything for scaling or for parallel builds.\\
+CodeBuild compiles your source code, runs unit tests, and produces artifacts that are ready to deploy. CodeBuild eliminates 
+the need to provision, manage, and scale your own build servers. 
 
 \printindex
 \end{document}

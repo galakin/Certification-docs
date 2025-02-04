@@ -360,7 +360,7 @@ AWS SQS has no limit on the messages stored queue
 We can increase the ammount od data on a SQS message with the \textbf{SQS Extended Client} over 256KB that laverage
 AWS S3 to store messages up to 2GB 
 
-\section{Amazon DynamoDB}
+{Amazon DynamoDB}
 DynamoDB is a \textbf{fast} and \textbf{flexible nonrelational database service }for any scale. DynamoDB enables customers 
 to offload the administrative burdens of operating and scaling distributed databases to AWS so that they don’t have to worry 
 about hardware provisioning, setup and configuration, throughput capacity planning, replication, software patching, or 
@@ -577,7 +577,7 @@ available yet, like the \textbf{PutItem} action\\
 
 DynamoDB Transitional Write is a "all-or-nothing" type of write operation in a DynamoDB 
 
-\section{Amazon ElastiCache}
+{Amazon ElastiCache}
 Amazon ElastiCache can be used to significantly improve latency and throughput for many \textbf{read-heavy application workloads} or 
 \textbf{compute-intensive workloads} by allowing you to store the objects that are often read in the cache.\\
 
@@ -1439,7 +1439,7 @@ You can upgrade your existing Memcached cluster by using the Modify process. Whe
 to Memcached version 1.4.33 or newer, please ensure that your existing parameter \textbf{max\_chunk\_size} values satisfies 
 conditions needed for \textbf{slab\_chunk\_max} parameter.
 
-\section{Amazon Kinesis Data Streams}
+{Amazon Kinesis Data Streams}
 With Kinesis Data Streams, you can build custom applications that process or analyze \textbf{streaming data} for specialized needs. 
 You can add various types of data such as clickstreams, application logs, and social media to a Kinesis data stream from hundreds 
 of thousands of sources.\\
@@ -2991,6 +2991,10 @@ One ore more read replicas on RDS could help on read-heavy operation.\\
 
 AWS RDS MySQL and PostGreSQL allot authentication with IAM Database Authentication
 
+In addition to strings, Redis supports lists, sets, sorted sets, hashes, bit arrays, and hyperlog logs.\\
+Applications can use these more advanced data structures to support a variety of use cases. For example, 
+you can use Redis Sorted Sets to easily implement a game leaderboard that keeps a list of players sorted by their rank.
+
 \section{AWS CDK}
 AWS CDK could define AWS resources on different programming languages that suppord the AWS CDK 
 library\\
@@ -3011,6 +3015,11 @@ and configuration.\\
 CodeBuild scales automatically, the organization does not have to do anything for scaling or for parallel builds.\\
 CodeBuild compiles your source code, runs unit tests, and produces artifacts that are ready to deploy. CodeBuild eliminates 
 the need to provision, manage, and scale your own build servers. 
+
+\section{AWS DynamoDB}
+\textbf{LSI} stands for \textbf{Local Secondary Index}. Some applications only need to query data using the base table's primary
+key; however, there may be situations where an alternate sort key would be helpful.\\
+To give your application a choice of sort keys, you can create one or more local secondary indexes
 
 \printindex
 \end{document}

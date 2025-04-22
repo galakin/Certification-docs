@@ -2886,7 +2886,12 @@ Amazon ElastiCache Redis on cluster mode is the best solution for RDS databases
 
 \section{AWS SAM}
 AWS SAM applicat can be redeployed with the \textbf{build} and \textbf{deploy} command\\
-\textbf{Transform} operation are used on SAM model
+\textbf{Transform} operation are used on SAM model\\
+
+With AWS SAM you can develop and test your serverless application locally, and then you can deploy your application
+by using the sam deploy command. The sam deploy command zips your application artifacts, uploads them to Amazon 
+Simple Storage Service (Amazon S3), and deploys your application to the AWS Cloud. AWS SAM uses AWS CloudFormation 
+as the underlying deployment mechanism.
 
 \section{AWS KMS}
 AWS encrypt file with AES-256 encryption algorithm\\
@@ -3041,6 +3046,16 @@ To give your application a choice of sort keys, you can create one or more local
 Set the host and port of the X-Ray daemon listener. By default, the SDK uses 127.0.0.1:2000 for both trace data (UDP) 
 and sampling (TCP).\\
 Use this variable if you have configured the daemon to listen on a different port or if it is running on a different host.
+
+\section{STS}
+AWS Security Token Service (AWS STS) is a web service that enables you to request temporary, limited-privilege credentials 
+for AWS Identity and Access Management (IAM) users or for users that you authenticate (federated users).\\
+Credentials that are created by using account credentials can range from 900 seconds (15 minutes) up to a 
+maximum of 3,600 seconds (1 hour), with a default of 1 hour. 
+
+\section{S3}
+If you want to configure an existing bucket as a static website that has public access, you must edit block public access
+settings for that bucket. You may also have to edit your account-level block public access settings.
 
 \printindex
 \end{document}

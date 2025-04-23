@@ -3039,7 +3039,15 @@ the need to provision, manage, and scale your own build servers.
 \section{AWS DynamoDB}
 \textbf{LSI} stands for \textbf{Local Secondary Index}. Some applications only need to query data using the base table's primary
 key; however, there may be situations where an alternate sort key would be helpful.\\
-To give your application a choice of sort keys, you can create one or more local secondary indexes
+To give your application a choice of sort keys, you can create one or more local secondary indexes\\
+
+\textbf{GSI}: Global Secondary Index\\
+\textbf{LSI}: Local Secondary Index
+
+If you perform heavy write activity on the table, but a global secondary index on that table has insufficient write capacity, 
+then the write activity on the table will be throttled. To avoid potential throttling, the provisioned write capacity for a 
+global secondary index should be equal or greater than the write capacity of the base table since new updates will write to 
+both the base table and global secondary index.
 
 \section{X-Ray}
 \textbf{AWS_XRAY_DAEMON_ADDRESS}\\

@@ -2929,12 +2929,15 @@ CloudFront private and public key are used to sign a portion of the CloudFront U
 CloudFront key pairs can be created only by root user\\
 
 You can import private and public SSH key into each other. You can also reuse SSH key
-Through AWS region
+Through AWS region.\\
 
 CloudFront can cache different versions of your content based on the values of query string parameters.\\
 \textbf{Forward all, cache based on whitelist} option should be chosen if your origin server returns 
 different versions of your objects based on one or more query string parameters.
-Then specify the parameters that you want CloudFront to use as a basis for caching in the Query string whitelist field.
+Then specify the parameters that you want CloudFront to use as a basis for caching in the Query string whitelist field.\\
+
+When a viewer request to CloudFront results in a cache miss (the requested object is not cached at the edge location), 
+CloudFront sends a request to the origin to retrieve the object. This is called an origin request.
 
 \section{CloudFormation}
 The correct format for the CloudFormation \textbf{FindInMap} operation is:\\
@@ -3016,7 +3019,10 @@ AWS API Gateway use the following method for authorization:
 
 In a canary release deployment, total API traffic is separated at random into a production release and a canary 
 release with a preconfigured ratio. Typically, the canary release receives a small percentage of API traffic and 
-the production release takes up the rest.
+the production release takes up the rest.\\
+
+AWS Security Token Service(STS) is used by API Gateway for logging data to CloudWatch logs. 
+Hence, AWS STS has to be enabled for the Region that you're using.
 
 \section{AWS Budget}
 AWS Budget need a \textbf{minimum of 5 week} before it can show metrics extracted from budget and 
@@ -3062,7 +3068,13 @@ before a run operation\\
 \section{AWS IAM}
 IAM Access Analyzer help you identify resources on your organization that are shared with external
 entity\\
-IAM user are able, unless specifically denied, to create SSL/TLS certificate
+IAM user are able, unless specifically denied, to create SSL/TLS certificate.\\
+
+To allow a resource on account A to interact with resource on account B you need to create an execution role in Account A 
+that gives the resource permission to do its work.\\
+Then you need to create a role in account B that the function in account A assumes to gain access to the cross-account resource.
+Make sure that you modify the trust policy of the role in Account B to allow the execution role of resource on account A 
+to assume this role.\\
 
 CodeCommit and CodeDeploy use appspec.yaml file on root dit to define build option
 and configuration.\\

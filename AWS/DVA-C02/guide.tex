@@ -360,11 +360,15 @@ AWS SQS has no limit on the messages stored queue
 We can increase the ammount od data on a SQS message with the \textbf{SQS Extended Client} over 256KB that laverage
 AWS S3 to store messages up to 2GB 
 
-{Amazon DynamoDB}
+\section{Amazon DynamoDB}
 DynamoDB is a \textbf{fast} and \textbf{flexible nonrelational database service }for any scale. DynamoDB enables customers 
 to offload the administrative burdens of operating and scaling distributed databases to AWS so that they don’t have to worry 
 about hardware provisioning, setup and configuration, throughput capacity planning, replication, software patching, or 
-cluster scaling.
+cluster scaling.\\
+
+\textbf{--projection-expression}\\
+A projection expression is a string that identifies the attributes you want. To retrieve a single attribute, specify its name. 
+For multiple attributes, the names must be comma-separated.
 
 \subsection{About Amazon DynamoDB}
 DynamoDB takes away one of the main stumbling blocks of scaling databases: the management of database software and 
@@ -2895,7 +2899,11 @@ as the underlying deployment mechanism.
 
 \section{AWS KMS}
 AWS encrypt file with AES-256 encryption algorithm\\
-AWs encryption can be used only along with HTTPS
+AWs encryption can be used only along with HTTPS\\
+
+\textbf{Data key caching} stores data keys and related cryptographic material in a cache. When you encrypt or decrypt data, 
+the AWS Encryption SDK looks for a matching data key in the cache. If it finds a match, it uses the cached data key 
+rather than generating a new one
 
 \section{AWS CLI}
 AWS CLI command can be testd with \textbf{-\-dry-run} flag during command option\\
@@ -2985,7 +2993,13 @@ on the API Gateway\\
 \textbf{MOCK}: This type of integration lets API Gateway return a response without sending the request further 
 to the backend. This is useful for API testing.\\
 
-In a \textbf{WebSocket API}, the client and the server can both send messages to each other at any time. 
+In a \textbf{WebSocket API}, the client and the server can both send messages to each other at any time.\\
+
+AWS API Gateway use the following method for authorization:
+\begin{itemize}
+	\item IAM permizzion with sigv4
+	\item Cognito Userp
+\end{itemize}
 
 \section{AWS Budget}
 AWS Budget need a \textbf{minimum of 5 week} before it can show metrics extracted from budget and 
@@ -3005,6 +3019,9 @@ Customers may use four mechanisms for controlling access to Amazon S3 resources:
 
 \textbf{Cross Origin Resource Sharing} (CORS) are used to share resources on a bucket B to be loaded on a web application
 hosted on a bucket A and they should be enabled on bucket B
+
+\textbf{S3 Select} enables applications to retrieve only a subset of data from an object by using simple SQL expressions. 
+By using S3 Select to retrieve only the data needed by your application
 
 \section{AWS RDS}
 One ore more read replicas on RDS could help on read-heavy operation.\\
@@ -3053,7 +3070,12 @@ both the base table and global secondary index.
 \textbf{AWS_XRAY_DAEMON_ADDRESS}\\
 Set the host and port of the X-Ray daemon listener. By default, the SDK uses 127.0.0.1:2000 for both trace data (UDP) 
 and sampling (TCP).\\
-Use this variable if you have configured the daemon to listen on a different port or if it is running on a different host.
+Use this variable if you have configured the daemon to listen on a different port or if it is running on a different host.\\
+
+\textbf{Annotations} are simple key-value pairs that are indexed for use with filter expressions. Use annotations to record
+data that you want to use to group traces in the console, or when calling the GetTraceSummaries API.\\
+
+X-Ray indexes up to 50 annotations per trace.
 
 \section{STS}
 AWS Security Token Service (AWS STS) is a web service that enables you to request temporary, limited-privilege credentials 
@@ -3064,6 +3086,19 @@ maximum of 3,600 seconds (1 hour), with a default of 1 hour.
 \section{S3}
 If you want to configure an existing bucket as a static website that has public access, you must edit block public access
 settings for that bucket. You may also have to edit your account-level block public access settings.
+
+\section{Macie}
+Amazon Macie is a data security service that discovers sensitive data by using machine learning and pattern matching, provides 
+visibility into data security risks, and enables automated protection against those risks.\\
+Macie finding on S3 are the following:
+\begin{itemize}
+	\item Credentials
+	\item CustomerIdentifier 
+	\item Financial
+	\item Multiple
+	\item Personal
+\end{itemize}
+
 
 \printindex
 \end{document}

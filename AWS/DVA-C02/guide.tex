@@ -360,6 +360,8 @@ AWS SQS has no limit on the messages stored queue
 We can increase the ammount od data on a SQS message with the \textbf{SQS Extended Client} over 256KB that laverage
 AWS S3 to store messages up to 2GB 
 
+The message group ID \textbf{MessageGroupId} is the tag that specifies that a message belongs to a specific message group. 
+
 \section{Amazon DynamoDB}
 DynamoDB is a \textbf{fast} and \textbf{flexible nonrelational database service }for any scale. DynamoDB enables customers 
 to offload the administrative burdens of operating and scaling distributed databases to AWS so that they don’t have to worry 
@@ -2464,6 +2466,8 @@ generate temporary security credentials to sign requests.\\
 You can also use a virtual private cloud (VPC) endpoint for Amazon EC2 Auto Scaling. Interface VPC endpoints enable your Amazon VPC resources 
 to use their private IP addresses to access Amazon EC2 Auto Scaling with no exposure to the public internet.\\
 
+The Load Balancer generates the \textbf{HTTP 503: Service unavailable} error when the target groups for the load balancer have no registered targets.
+
 %---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 \section{Amazon Elastic Block Store}
 Amazon Elastic Block Store (Amazon EBS) provides scalable, high-performance block storage resources that can be used with Amazon EC2 
@@ -2907,7 +2911,15 @@ rather than generating a new one
 
 \section{AWS CLI}
 AWS CLI command can be testd with \textbf{-\-dry-run} flag during command option\\
-CLI Command can use the \textbf{-\-region} command flag to specify the region where the CLI command is run 
+CLI Command can use the \textbf{-\-region} command flag to specify the region where the CLI command is run\\
+
+For commands that can return a large list of items, the AWS Command Line Interface (AWS CLI) has three options to control the 
+number of items included in the output when the AWS CLI calls a service's API to populate the list.
+\begin{itemize}
+	\item --page-size
+	\item --max-items
+	\item --starting-token
+\end{itemize}
 
 \section{CloudFront}
 Amazon CloudFront work on a Content Delivery Network (CDN) that improve read performance for a data a using 
@@ -2927,7 +2939,6 @@ Then specify the parameters that you want CloudFront to use as a basis for cachi
 \section{CloudFormation}
 The correct format for the CloudFormation \textbf{FindInMap} operation is:\\
 
-
 \centerline{!FindInMap[ MapName, TopLevelKey, SecondLevelKey ]}
 There is a \textbf{Dependency} section on CloudFormation templates\\
 
@@ -2937,6 +2948,8 @@ you to input custom values to your template each time you create or update a sta
 \textbf{\!ImportValue}\\
 The intrinsic function \textbf{Fn::ImportValue} returns the value of an output exported by another stack. 
 You typically use this function to create cross-stack references.
+
+The \textbf{Fn::GetAtt} intrinsic function returns the value of an attribute from a resource in the template.
 
 \section{AWS VPN}
 AWS Subnet allow VPN partitioning\\
@@ -3001,6 +3014,10 @@ AWS API Gateway use the following method for authorization:
 	\item Cognito Userp
 \end{itemize}
 
+In a canary release deployment, total API traffic is separated at random into a production release and a canary 
+release with a preconfigured ratio. Typically, the canary release receives a small percentage of API traffic and 
+the production release takes up the rest.
+
 \section{AWS Budget}
 AWS Budget need a \textbf{minimum of 5 week} before it can show metrics extracted from budget and 
 show budget forecast
@@ -3031,6 +3048,10 @@ AWS RDS MySQL and PostGreSQL allot authentication with IAM Database Authenticati
 In addition to strings, Redis supports lists, sets, sorted sets, hashes, bit arrays, and hyperlog logs.\\
 Applications can use these more advanced data structures to support a variety of use cases. For example, 
 you can use Redis Sorted Sets to easily implement a game leaderboard that keeps a list of players sorted by their rank.
+
+If your workload is unpredictable, you can enable storage autoscaling for an Amazon RDS DB instance. With storage autoscaling enabled, 
+when Amazon RDS detects that you are running out of free database space it automatically scales up your storage.\\
+Both Aurora and manged engine have autoscaling option available
 
 \section{AWS CDK}
 AWS CDK could define AWS resources on different programming languages that suppord the AWS CDK 

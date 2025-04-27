@@ -342,6 +342,7 @@ When you create your source queue, Amazon SQS allows you to specify a dead-lette
 under which SQS should move messages to the DLQ.\\
 The condition is the number of times a consumer can receive a message from the queue, defined as maxReceiveCount.
 This is known as the redrive policy.\\
+
 When the \textbf{ReceiveCount} for a message exceeds the \textbf{maxReceiveCount} for a queue, Amazon SQS is 
 designed to move the message to a dead-letter queue.\\
 The redrive policy manages the first half of the life cycle of unconsumed messages by moving them from a source queue 
@@ -355,13 +356,14 @@ the source queue.\\
 
 You must use a FIFO dead letter queue with a FIFO queue.\\
 
-AWS SQS has no limit on the messages stored queue
+AWS SQS has no limit on the messages stored queue\\
 
 We can increase the ammount od data on a SQS message with the \textbf{SQS Extended Client} over 256KB that laverage
-AWS S3 to store messages up to 2GB 
+AWS S3 to store messages up to 2GB \\
 
-The message group ID \textbf{MessageGroupId} is the tag that specifies that a message belongs to a specific message group. 
+The message group ID \textbf{MessageGroupId} is the tag that specifies that a message belongs to a specific message group.\\
 
+With SQS you can retrive \textbf{max 10 messages} at the same time
 \section{Amazon DynamoDB}
 DynamoDB is a \textbf{fast} and \textbf{flexible nonrelational database service }for any scale. DynamoDB enables customers 
 to offload the administrative burdens of operating and scaling distributed databases to AWS so that they don’t have to worry 
@@ -1753,7 +1755,15 @@ Shard splitting is used to manage "\textbf{hot shard}"\\
 Standard shard have provision of 2MB per shard while enanched consumer have provision of 2MB per 
 consumer per shard.\\
 
-Decrease the frequency size of the request could help to avoid spike on kinesis streams
+Decrease the frequency size of the request could help to avoid spike on kinesis streams.\\
+
+You should use enhanced fan-out if you have multiple consumers retrieving data from a stream in parallel.\\
+
+Amazon Kinesis Data Firehose is the easiest way to reliably load streaming data into data lakes, data stores, 
+and analytics services. It can capture, transform, and deliver streaming data to Amazon S3.\\
+Amazon Kinesis Data Analytics is the easiest way to transform and analyze streaming data in real-time.
+Amazon Kinesis Data Analytics reduces the complexity of building, managing, and integrating applications 
+with other AWS services.
 
 \section{AWS Lambda}
 AWS Lambda lets you run code without provisioning or managing servers. You pay only for the compute time you consume - there is no charge 
@@ -2722,7 +2732,7 @@ requests to use the KMS key in cryptographic operations fail.\\
 When you perform an action that makes the KMS key unusable, there is no immediate effect on the EC2 instance or the attached EBS volumes. 
 Amazon EC2 uses the data key, not the KMS key, to encrypt all disk I/O while the volume is attached to the instance.\\
 
-\subsub??section{Encrypt EBS resources}
+\subsubsection{Encrypt EBS resources}
 You encrypt EBS volumes by enabling encryption, either using encryption by default or by enabling encryption when you create a volume that you 
 want to encrypt.\\
 When you encrypt a volume, you can specify the symmetric encryption KMS key to use to encrypt the volume. If you do not specify a KMS key, 
@@ -2847,6 +2857,9 @@ new EC2 instances and point the ELB to the new ASG.\\
 The old ASG is terminated as soon as the new one is attacched.\\
 Immutable is the \textbf{safest} way to deploy critical application.\\
 
+You must use saved configurations to migrate an Elastic Beanstalk environment between AWS accounts. 
+You can save your environment's configuration as an object in Amazon Simple Storage Service (Amazon S3) 
+that can be applied to other environments during environment creation, or applied to a running environment.\\
 %35:00
 \subsection{Deployment Methods}
 
@@ -2893,7 +2906,7 @@ application should launch a curl command to the following link: \textbf{http://1
 Amazon ElastiCache Redis on cluster mode is the best solution for RDS databases 
 
 \section{AWS SAM}
-AWS SAM applicat can be redeployed with the \textbf{build} and \textbf{deploy} command\\
+AWS SAM application can be redeployed with the \textbf{build} and \textbf{deploy} command\\
 \textbf{Transform} operation are used on SAM model\\
 
 With AWS SAM you can develop and test your serverless application locally, and then you can deploy your application
@@ -2956,19 +2969,37 @@ The \textbf{Fn::GetAtt} intrinsic function returns the value of an attribute fro
 
 \section{AWS VPN}
 AWS Subnet allow VPN partitioning\\
-Routing tabkle defines the internet access for a VPN Subnet\\
+Routing table defines the internet access for a VPN Subnet\\
 
 NAT gateway are managed by AWS and allow a subnet to access internet while remaining private\\
 NACL can have Allow and Deny rules while Security Groups only have Allow rules and leave everything 
 elese unspecified to deny.\\
 
-VPC flow logs are a feature that enable to capture info about IP traffic to and from the network
+VPC flow logs are a feature that enable to capture info about IP traffic to and from the network.\\
+
+Never resolve the IP of a load balancer as it can change with time. You should always use the DNS name.
 
 \section{AWS EC2}
 EC2 Metadata are located on \textbf{http://$<$instance-ip$>$/latest/metadata}\\
 On a 5XX server error with API you should implement exponential backoff\\
 
 Deployment of new application on AWS EC2 can be done only with \textbf{Blue/Green} strategy\\
+
+\begin{comment}
+HTTP 503 - HTTP 503 indicates 'Service unavailable' error. This error in ALB is an indicator of the target groups for the load balancer having no registered targets.
+
+Incorrect options:
+
+HTTP 500 - HTTP 500 indicates 'Internal server' error. There are several reasons for their error: A client submitted a request without an HTTP protocol, 
+and the load balancer was unable to generate a redirect URL, there was an error executing the web ACL rules.
+
+HTTP 504 - HTTP 504 is 'Gateway timeout' error. Several reasons for this error, to quote a few: The load balancer failed to establish a connection to the target 
+before the connection timeout expired, The load balancer established a connection to the target but the target did not respond before the idle timeout period elapsed.
+
+HTTP 403 - HTTP 403 is 'Forbidden' error. You configured an AWS WAF web access control list (web ACL) to monitor requests to your Application Load Balancer and it blocked a request.
+\end{comment}
+
+You cannot create an Auto Scaling group that launches both Spot and On-Demand Instances or that specifies multiple instance types.
 
 \section{AWS SQL}
 Aurora SQL is the AWS default engine for the RDS databases engine
@@ -2985,7 +3016,7 @@ Aliases record map hostnames to AWS resources\\
 
 \section{ElasticBeanstalk}
 Any resources created inside the ElasticBeanstalk directory \textbf{.ebextensions} is part of
-tge EB template and it wull be deleted after redeploying the template\\
+the EB template and it will be deleted after redeploying the template\\
 
 .ebextension is the directory responable on EB to store user custom resources on AWS\\
 
@@ -3013,8 +3044,8 @@ In a \textbf{WebSocket API}, the client and the server can both send messages to
 
 AWS API Gateway use the following method for authorization:
 \begin{itemize}
-	\item IAM permizzion with sigv4
-	\item Cognito Userp
+	\item IAM permissiion with sigv4
+	\item Cognito User pool
 \end{itemize}
 
 In a canary release deployment, total API traffic is separated at random into a production release and a canary 
@@ -3037,19 +3068,29 @@ AWS S3 presigned-URL can be time limited with a min value of 1 minute and a maxi
 \textbf{Same-Region Replication (SRR)} and \textbf{Cross-Region Replication (CRR)} can be configured at 
 the S3 \textbf{bucket level}, a \textbf{shared prefix level}, or an \textbf{object level} using S3 object tags.\\
 
-Customers may use four mechanisms for controlling access to Amazon S3 resources: Identity and Access Management 
-(IAM) policies, bucket policies, Access Control Lists (ACLs), and Query String Authentication.\\
+Customers may use four mechanisms for controlling access to Amazon S3 resources: 
+\begin{itemize}
+	\item Identity and Access Management (IAM) policies
+	\item bucket policies
+	\item Access Control Lists (ACLs)
+	\item Query String Authentication 
+\end{itemize}
 
 \textbf{Cross Origin Resource Sharing} (CORS) are used to share resources on a bucket B to be loaded on a web application
 hosted on a bucket A and they should be enabled on bucket B
 
 \textbf{S3 Select} enables applications to retrieve only a subset of data from an object by using simple SQL expressions. 
-By using S3 Select to retrieve only the data needed by your application
+By using S3 Select to retrieve only the data needed by your application.\\
 
+If you want to configure an existing bucket as a static website that has public access, you must edit block public access
+settings for that bucket. You may also have to edit your account-level block public access settings.\\
+
+Amazon S3 delivers strong read-after-write consistency automatically, without changes to performance or availability, 
+without sacrificing regional isolation for applications, and at no additional cost.
 \section{AWS RDS}
 One ore more read replicas on RDS could help on read-heavy operation.\\
 
-AWS RDS MySQL and PostGreSQL allot authentication with IAM Database Authentication
+AWS RDS MySQL and PostGreSQL allow authentication with IAM Database Authentication
 
 In addition to strings, Redis supports lists, sets, sorted sets, hashes, bit arrays, and hyperlog logs.\\
 Applications can use these more advanced data structures to support a variety of use cases. For example, 
@@ -3084,7 +3125,20 @@ and configuration.\\
 
 CodeBuild scales automatically, the organization does not have to do anything for scaling or for parallel builds.\\
 CodeBuild compiles your source code, runs unit tests, and produces artifacts that are ready to deploy. CodeBuild eliminates 
-the need to provision, manage, and scale your own build servers. 
+the need to provision, manage, and scale your own build servers.\\ 
+
+CodeDeploy Deployment Groups\\
+You can specify one or more deployment groups for a CodeDeploy application. The deployment group contains settings and 
+configurations used during the deployment.\\
+
+A build spec is a collection of build commands and related settings, in YAML format, that AWS CodeBuild uses to run a build. 
+You can include a build spec, a \textbf{buildspec.yaml} file in the root directory, as part of the source code or you can 
+define a build spec when you create a build project.
+
+With the Local Build support for AWS CodeBuild, you just specify the location of your source code, choose your build settings, 
+and CodeBuild runs build scripts for compiling, testing, and packaging your code. You can use the AWS CodeBuild agent to test 
+and debug builds on a local machine.\\
+
 
 \section{AWS DynamoDB}
 \textbf{LSI} stands for \textbf{Local Secondary Index}. Some applications only need to query data using the base table's primary
@@ -3099,8 +3153,11 @@ then the write activity on the table will be throttled. To avoid potential throt
 global secondary index should be equal or greater than the write capacity of the base table since new updates will write to 
 both the base table and global secondary index.
 
+If you have globally dispersed users, consider using global tables. With global tables, you can specify the AWS Regions 
+where you want the table to be available. This can significantly reduce latency for your users
+
 \section{X-Ray}
-\textbf{AWS_XRAY_DAEMON_ADDRESS}\\
+\textbf{AWS\_XRAY\_DAEMON\_ADDRESS}\\
 Set the host and port of the X-Ray daemon listener. By default, the SDK uses 127.0.0.1:2000 for both trace data (UDP) 
 and sampling (TCP).\\
 Use this variable if you have configured the daemon to listen on a different port or if it is running on a different host.\\
@@ -3116,10 +3173,6 @@ for AWS Identity and Access Management (IAM) users or for users that you authent
 Credentials that are created by using account credentials can range from 900 seconds (15 minutes) up to a 
 maximum of 3,600 seconds (1 hour), with a default of 1 hour. 
 
-\section{S3}
-If you want to configure an existing bucket as a static website that has public access, you must edit block public access
-settings for that bucket. You may also have to edit your account-level block public access settings.
-
 \section{Macie}
 Amazon Macie is a data security service that discovers sensitive data by using machine learning and pattern matching, provides 
 visibility into data security risks, and enables automated protection against those risks.\\
@@ -3132,6 +3185,11 @@ Macie finding on S3 are the following:
 	\item Personal
 \end{itemize}
 
+\section{ECS}
+Use the awslogs log driver to configure the containers in your tasks to send log information to CloudWatch Logs.
+Add the required logConfiguration parameters to your task definition
+
 
 \printindex
 \end{document}
+

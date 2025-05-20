@@ -369,7 +369,12 @@ AWS S3 to store messages up to 2GB \\
 
 The message group ID \textbf{MessageGroupId} is the tag that specifies that a message belongs to a specific message group.\\
 
-With SQS you can retrive \textbf{max 10 messages} at the same time
+With SQS you can retrive \textbf{max 10 messages} at the same time.\\
+
+The visibility timeout value for a AWS SQS queue is in seconds is by defaults 30 seconds.\\
+\textbf{You can't change the queue type after you create it}.\\
+
+
 \section{Amazon DynamoDB}
 DynamoDB is a \textbf{fast} and \textbf{flexible nonrelational database service }for any scale. DynamoDB enables customers 
 to offload the administrative burdens of operating and scaling distributed databases to AWS so that they don’t have to worry 
@@ -3044,6 +3049,8 @@ Immutable deployment is the minimum config that mantain alive the older applicat
 If your AWS Elastic Beanstalk application performs operations or workflows that take a long time to complete, 
 you can offload those tasks to a dedicated worker environment. 
 
+immutable updates traffic splitting mode can flush all accumulated Amazon EC2 burst balances
+
 \section{API Gateway}
 AWS API Gateway can access an internal cache\\
 AWS API Gateway can leverage AWS Lambda computational ability to run an external  authentication
@@ -3129,6 +3136,9 @@ Then you need to create a role in account B that the function in account A assum
 Make sure that you modify the trust policy of the role in Account B to allow the execution role of resource on account A 
 to assume this role.\\
 
+Instead of creating individual policies for each user, you can use policy variables and create a single policy that applies
+to multiple users.\\
+
 CodeCommit and CodeDeploy use appspec.yaml file on root dit to define build option
 and configuration.\\
 \textbf{ValidateService} is the last CodeDeploy hook available after an applicatin is installed and it's running
@@ -3201,6 +3211,15 @@ Macie finding on S3 are the following:
 Use the awslogs log driver to configure the containers in your tasks to send log information to CloudWatch Logs.
 Add the required logConfiguration parameters to your task definition
 
+If you use a target tracking scaling policy based on a custom Amazon SQS queue metric, dynamic scaling can adjust 
+to the demand curve of your application more effectively.\\
+Use backlog per instance metric with target tracking scaling policy.\\
+
+\section{Cognito}
+
+Cognito User Pools can help you with token handling and management, like creating JWT token.\\
+
+AWS Serverless Application Repository (SAR) is use to stored prebuild serverless application ready to be deployed.
 
 \printindex
 \end{document}

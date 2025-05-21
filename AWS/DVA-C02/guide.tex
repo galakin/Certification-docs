@@ -2935,7 +2935,9 @@ AWs encryption can be used only along with HTTPS\\
 
 \textbf{Data key caching} stores data keys and related cryptographic material in a cache. When you encrypt or decrypt data, 
 the AWS Encryption SDK looks for a matching data key in the cache. If it finds a match, it uses the cached data key 
-rather than generating a new one
+rather than generating a new one.\\
+
+KMS stores the CMK, and receives data from the clients, which it encrypts and sends back.\\
 
 \section{AWS CLI}
 AWS CLI command can be testd with \textbf{-\-dry-run} flag during command option\\
@@ -2974,13 +2976,15 @@ The correct format for the CloudFormation \textbf{FindInMap} operation is:\\
 There is a \textbf{Dependency} section on CloudFormation templates\\
 
 You can use the \textbf{Parameters} section to customize your templates. Parameters enable 
-you to input custom values to your template each time you create or update a stack.
+you to input custom values to your template each time you create or update a stack.\\
 
 \textbf{\!ImportValue}\\
 The intrinsic function \textbf{Fn::ImportValue} returns the value of an output exported by another stack. 
-You typically use this function to create cross-stack references.
+You typically use this function to create cross-stack references.\\
 
-The \textbf{Fn::GetAtt} intrinsic function returns the value of an attribute from a resource in the template.
+The \textbf{Fn::GetAtt} intrinsic function returns the value of an attribute from a resource in the template.\\
+
+Exported Output Values in CloudFormation must have unique names within a single Region
 
 \section{AWS VPN}
 AWS Subnet allow VPN partitioning\\
@@ -3176,7 +3180,10 @@ global secondary index should be equal or greater than the write capacity of the
 both the base table and global secondary index.
 
 If you have globally dispersed users, consider using global tables. With global tables, you can specify the AWS Regions 
-where you want the table to be available. This can significantly reduce latency for your users
+where you want the table to be available. This can significantly reduce latency for your users.\\
+
+Time To Live (TTL) for DynamoDB allows you to define when items in a table expire so that they can be automatically deleted 
+from the database.\\
 
 \section{X-Ray}
 \textbf{AWS\_XRAY\_DAEMON\_ADDRESS}\\

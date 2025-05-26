@@ -2489,6 +2489,9 @@ to use their private IP addresses to access Amazon EC2 Auto Scaling with no expo
 
 The Load Balancer generates the \textbf{HTTP 503: Service unavailable} error when the target groups for the load balancer have no registered targets.
 
+The peercentage of the traffic redirected to one EC2 instance on a cross-zone load balancer is evenly distributed accross all the instances\\
+EG: 10 instances, regarding the AZ distribution receive 10\% of the traffic
+
 %---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 \section{Amazon Elastic Block Store}
 Amazon Elastic Block Store (Amazon EBS) provides scalable, high-performance block storage resources that can be used with Amazon EC2 
@@ -2929,6 +2932,17 @@ by using the sam deploy command. The sam deploy command zips your application ar
 Simple Storage Service (Amazon S3), and deploys your application to the AWS Cloud. AWS SAM uses AWS CloudFormation 
 as the underlying deployment mechanism.
 
+SAM supports the following resource types:
+\begin{itemize}
+	\item AWS::Serverless::Api
+	\item AWS::Serverless::Application
+	\item AWS::Serverless::Function
+	\item AWS::Serverless::HttpApi
+	\item AWS::Serverless::LayerVersion
+	\item AWS::Serverless::SimpleTable
+	\item AWS::Serverless::StateMachine
+\end{itemize}
+
 \section{AWS KMS}
 AWS encrypt file with AES-256 encryption algorithm\\
 AWs encryption can be used only along with HTTPS\\
@@ -3145,7 +3159,11 @@ to multiple users.\\
 
 CodeCommit and CodeDeploy use appspec.yaml file on root dit to define build option
 and configuration.\\
-\textbf{ValidateService} is the last CodeDeploy hook available after an applicatin is installed and it's running
+\textbf{ValidateService} is the last CodeDeploy hook available after an applicatin is installed and it's running.\\
+
+IAM is used as a certificate manager only when you must support HTTPS connections in a Region that is not supported by ACM. 
+IAM securely encrypts your private keys and stores the encrypted version in IAM SSL certificate storage.
+
 
 \section{AWS CodeBuild}
 
@@ -3165,6 +3183,7 @@ With the Local Build support for AWS CodeBuild, you just specify the location of
 and CodeBuild runs build scripts for compiling, testing, and packaging your code. You can use the AWS CodeBuild agent to test 
 and debug builds on a local machine.\\
 
+IAM Username and Password \textbf{are not supported} to access AWS CodeCommiy.\\
 
 \section{AWS DynamoDB}
 \textbf{LSI} stands for \textbf{Local Secondary Index}. Some applications only need to query data using the base table's primary

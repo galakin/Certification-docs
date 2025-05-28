@@ -3034,7 +3034,10 @@ HTTP 403 - HTTP 403 is 'Forbidden' error. You configured an AWS WAF web access c
 
 You cannot create an Auto Scaling group that launches both Spot and On-Demand Instances or that specifies multiple instance types.
 
-EC2 Health Check are \textbf{not enabled} by default
+EC2 Health Check are \textbf{not enabled} by default.\\
+
+The Classic Load Balancer doesn't allow you to run multiple copies of a task on the same instance. Instead, with the Classic Load Balancer, 
+you must statically map port numbers on a container instance.
 
 \section{AWS SQL}
 Aurora SQL is the AWS default engine for the RDS databases engine

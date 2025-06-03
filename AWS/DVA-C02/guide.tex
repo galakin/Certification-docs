@@ -2183,6 +2183,10 @@ Lambda maximum size with custom image is \textbf{10GiB}\\
 
 AWS KMS Lambda envelope encryption is used for file larger than 4KiB\\
 
+You can configure Application Auto Scaling to manage provisioned concurrency on a schedule or based on utilization. 
+Use scheduled scaling to increase provisioned concurrency in anticipation of peak traffic. To increase provisioned concurrency 
+automatically as needed, use the Application Auto Scaling API to register a target and create a scaling policy.\\
+
 %Aws Fundamentals ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 \section{ASG: Autoscaling Group}
 Amazon EC2 Auto Scaling helps you ensure that you have the correct number of Amazon EC2 instances available to 
@@ -3249,6 +3253,9 @@ Macie finding on S3 are the following:
 	\item Multiple
 	\item Personal
 \end{itemize}
+
+If you can't see traced on an X-Ray Enabled AWS resources it mean that the IAM Role associated with the resources is not
+configured so enable the metrics exposure through AWS X-Ray
 
 \section{ECS}
 Use the awslogs log driver to configure the containers in your tasks to send log information to CloudWatch Logs.

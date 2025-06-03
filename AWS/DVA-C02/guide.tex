@@ -3104,7 +3104,9 @@ AWS API Gateway use the following method for authorization:
 \begin{itemize}
 	\item IAM permissiion with sigv4
 	\item Cognito User pool
+ 	\item Lambda Authorizer
 \end{itemize}
+AWS Api Gateway can not use AWS STS as an authorization method.\\
 
 In a canary release deployment, total API traffic is separated at random into a production release and a canary 
 release with a preconfigured ratio. Typically, the canary release receives a small percentage of API traffic and 

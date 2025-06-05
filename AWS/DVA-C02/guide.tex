@@ -2848,8 +2848,10 @@ To use a customer managed KMS key, you must give users permission to use the KMS
 \end{itemize}
 
 Encryption by default is a Region-specific setting. If you enable it for a Region, you cannot disable it for individual volumes 
-or snapshots in that Region.
+or snapshots in that Region.\\
 
+An io1 volume can range in size from 4 GiB to 16 TiB. The maximum ratio of provisioned IOPS to the requested volume size (in GiB) is 50:1. 
+For example, a 100 GiB volume can be provisioned with up to 5,000 IOPS.
 
 \section{ElasticBeanstalk}
 Rolling and Rolling with additional batch deployment policy are not suitable for the single
@@ -3283,7 +3285,10 @@ Use backlog per instance metric with target tracking scaling policy.\\
 
 Cognito User Pools can help you with token handling and management, like creating JWT token.\\
 
-AWS Serverless Application Repository (SAR) is use to stored prebuild serverless application ready to be deployed.
+AWS Serverless Application Repository (SAR) is use to stored prebuild serverless application ready to be deployed.\\
+
+Amazon Cognito Sync is an AWS service and client library that enables cross-device syncing of application-related user data. 
+You can use it to synchronize user profile data across mobile devices and the web without requiring your own backend.
 
 \printindex
 \end{document}

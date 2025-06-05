@@ -1780,6 +1780,8 @@ with other AWS services.\\
 
 Strongly consistent reads apply only while using the read operations (such as GetItem, Query, and Scan).\\
 
+ElastiCache is \textbf{NOT a supported destination} for Amazon Kinesis Data Firehose.
+
 \section{AWS Lambda}
 AWS Lambda lets you run code without provisioning or managing servers. You pay only for the compute time you consume - there is no charge 
 when your code is not running.\\
@@ -2188,6 +2190,8 @@ AWS KMS Lambda envelope encryption is used for file larger than 4KiB\\
 You can configure Application Auto Scaling to manage provisioned concurrency on a schedule or based on utilization. 
 Use scheduled scaling to increase provisioned concurrency in anticipation of peak traffic. To increase provisioned concurrency 
 automatically as needed, use the Application Auto Scaling API to register a target and create a scaling policy.\\
+
+AWS Lambda service does not support Lambda functions that use multi-architecture container images
 
 %Aws Fundamentals ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 \section{ASG: Autoscaling Group}

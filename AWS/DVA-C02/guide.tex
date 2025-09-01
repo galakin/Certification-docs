@@ -1779,7 +1779,12 @@ with other AWS services.\\
 
 Strongly consistent reads apply only while using the read operations (such as GetItem, Query, and Scan).\\
 
-ElastiCache is \textbf{NOT a supported destination} for Amazon Kinesis Data Firehose.
+ElastiCache is \textbf{NOT a supported destination} for Amazon Kinesis Data Firehose.\\
+
+Amazon DynamoDB returns data to the application in 1 MB increments, and an application performs additional Scan 
+operations to retrieve the next 1 MB of data.\\
+the Scan operation can logically divide a table or secondary index into multiple segments, with multiple application 
+workers scanning the segments in parallel with the \textbf{parallel scan} operation. 
 
 \section{AWS Lambda}
 AWS Lambda lets you run code without provisioning or managing servers. You pay only for the compute time you consume - there is no charge 

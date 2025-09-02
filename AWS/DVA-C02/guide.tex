@@ -2939,7 +2939,9 @@ to the Docker daemon on a container instance.\\
 Based of the kind of hw it's possible to differentiate the logic. To retrieve this metadata, the 
 application should launch a curl command to the following link: \textbf{http://169.254.169.254/latest/meta-data/}.\\
 
-Amazon ElastiCache Redis on cluster mode is the best solution for RDS databases 
+Amazon ElastiCache Redis on cluster mode is the best solution for RDS databases.\\ 
+
+Use ElastiCache to mantain user session on a EC2 instance during a B/G deployment.\\
 
 \section{AWS SAM}
 AWS SAM application can be redeployed with the \textbf{build} and \textbf{deploy} command\\
@@ -3288,6 +3290,8 @@ If you use a target tracking scaling policy based on a custom Amazon SQS queue m
 to the demand curve of your application more effectively.\\
 Use backlog per instance metric with target tracking scaling policy.\\
 
+EC2 support B/G and In-place deployment.\\
+
 \section{Cognito}
 
 Cognito User Pools can help you with token handling and management, like creating JWT token.\\
@@ -3299,6 +3303,8 @@ You can use it to synchronize user profile data across mobile devices and the we
 
 \section{CloudWatch}
 The standard CloudWatch metrics don't have any metrics for memory utilization details.\\
+
+Use \textbf{associte-kms-key} CLI command to encrypt a CloudWatch log group
 
 \printindex
 \end{document}

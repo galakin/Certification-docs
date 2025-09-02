@@ -3226,6 +3226,9 @@ and debug builds on a local machine.\\
 
 IAM Username and Password \textbf{are not supported} to access AWS CodeCommiy.\\
 
+AWS CodeDeploy action order is the following:\\
+DownloadBundle, BeforeInstall, ApplicationStart, ValidateService
+
 \section{AWS DynamoDB}
 \textbf{LSI} stands for \textbf{Local Secondary Index}. Some applications only need to query data using the base table's primary
 key; however, there may be situations where an alternate sort key would be helpful.\\

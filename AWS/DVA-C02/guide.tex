@@ -373,6 +373,8 @@ With SQS you can retrive \textbf{max 10 messages} at the same time.\\
 The visibility timeout value for a AWS SQS queue is in seconds is by defaults 30 seconds.\\
 \textbf{You can't change the queue type after you create it}.\\
 
+Long polling makes it inexpensive to retrieve messages from your Amazon SQS queue as soon as the messages are available. 
+Long polling helps reduce the cost of using Amazon SQS by eliminating the number of empty responses.\\
 
 \section{Amazon DynamoDB}
 DynamoDB is a \textbf{fast} and \textbf{flexible nonrelational database service }for any scale. DynamoDB enables customers 
@@ -1784,7 +1786,12 @@ ElastiCache is \textbf{NOT a supported destination} for Amazon Kinesis Data Fire
 Amazon DynamoDB returns data to the application in 1 MB increments, and an application performs additional Scan 
 operations to retrieve the next 1 MB of data.\\
 the Scan operation can logically divide a table or secondary index into multiple segments, with multiple application 
-workers scanning the segments in parallel with the \textbf{parallel scan} operation. 
+workers scanning the segments in parallel with the \textbf{parallel scan} operation.\\
+
+The \textbf{DeleteTable} operation deletes a table and all of its items. After a DeleteTable request, the specified 
+table is in the \textbf{DELETING} state until DynamoDB completes the deletion.\\
+\textbf{PurgeTable} DON'T exist as an operation
+
 
 \section{AWS Lambda}
 AWS Lambda lets you run code without provisioning or managing servers. You pay only for the compute time you consume - there is no charge 
@@ -2979,6 +2986,9 @@ rather than generating a new one.\\
 
 KMS stores the CMK, and receives data from the clients, which it encrypts and sends back.\\
 
+Server-side encryption is the encryption of data at its destination by the application or service that receives it.\\
+\textbf{'x-amz-server-side-encryption': 'aws:kms'} is the header that hould be used for encrypting file on S3.\\
+
 \section{AWS CLI}
 AWS CLI command can be testd with \textbf{-\-dry-run} flag during command option\\
 CLI Command can use the \textbf{-\-region} command flag to specify the region where the CLI command is run\\
@@ -3007,7 +3017,11 @@ different versions of your objects based on one or more query string parameters.
 Then specify the parameters that you want CloudFront to use as a basis for caching in the Query string whitelist field.\\
 
 When a viewer request to CloudFront results in a cache miss (the requested object is not cached at the edge location), 
-CloudFront sends a request to the origin to retrieve the object. This is called an origin request.
+CloudFront sends a request to the origin to retrieve the object. This is called an origin request.\\
+
+\textbf{Origin Groups} are for origin failure scenarios and not for request routing.
+
+
 
 \section{CloudFormation}
 The correct format for the CloudFormation \textbf{FindInMap} operation is:\\
@@ -3024,7 +3038,11 @@ You typically use this function to create cross-stack references.\\
 
 The \textbf{Fn::GetAtt} intrinsic function returns the value of an attribute from a resource in the template.\\
 
-Exported Output Values in CloudFormation must have unique names within a single Region
+Exported Output Values in CloudFormation must have unique names within a single Region.\\
+
+To export a stack's output value, use the \textbf{Export} field in the Output section of the stack's template. 
+To import those values, use the Fn::ImportValue
+
 
 \section{AWS VPN}
 AWS Subnet allow VPN partitioning\\
@@ -3166,7 +3184,13 @@ If you want to configure an existing bucket as a static website that has public 
 settings for that bucket. You may also have to edit your account-level block public access settings.\\
 
 Amazon S3 delivers strong read-after-write consistency automatically, without changes to performance or availability, 
-without sacrificing regional isolation for applications, and at no additional cost.
+without sacrificing regional isolation for applications, and at no additional cost.\\
+
+The Amazon S3 notification feature enables you to receive notifications when certain events happen in your bucket.\\
+
+Using server-side encryption with customer-provided encryption keys (\textbf{SSE-C}) allows you to set your encryption keys.\\
+
+
 \section{AWS RDS}
 One ore more read replicas on RDS could help on read-heavy operation.\\
 
@@ -3305,6 +3329,14 @@ You can use it to synchronize user profile data across mobile devices and the we
 The standard CloudWatch metrics don't have any metrics for memory utilization details.\\
 
 Use \textbf{associte-kms-key} CLI command to encrypt a CloudWatch log group
+
+\section{AWS API Gateway}
+A client of your API can invalidate an existing cache entry and reload it from the integration endpoint for individual requests. 
+The client must send a request that contains the \textbf{"Cache-Control: max-age=0" header}. 
+
+\section{Kinesis}
+The KPL is an easy-to-use, highly configurable library that helps you write to a Kinesis data stream. 
+It acts as an intermediary between your producer application code and the Kinesis Data Streams API actions.\\
 
 \printindex
 \end{document}

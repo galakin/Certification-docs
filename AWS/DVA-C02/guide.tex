@@ -2950,6 +2950,8 @@ Amazon ElastiCache Redis on cluster mode is the best solution for RDS databases.
 
 Use ElastiCache to mantain user session on a EC2 instance during a B/G deployment.\\
 
+Only vertical scaling is available for ElastiCache when \textbf{cluster mode} is disabled.\\
+
 \section{AWS SAM}
 AWS SAM application can be redeployed with the \textbf{build} and \textbf{deploy} command\\
 \textbf{Transform} operation are used on SAM model\\
@@ -3021,7 +3023,7 @@ CloudFront sends a request to the origin to retrieve the object. This is called 
 
 \textbf{Origin Groups} are for origin failure scenarios and not for request routing.
 
-
+CloudFront can comminicate via HTTPS with both client and backend
 
 \section{CloudFormation}
 The correct format for the CloudFormation \textbf{FindInMap} operation is:\\
@@ -3095,12 +3097,6 @@ latencies and the ability to burst to 3,000 IOPS for extended periods of time. B
 16,000 IOPS (at 5,334 GiB and above), baseline performance scales linearly at 3 IOPS per GiB of volume size.\\
 
 
-\section{AWS SQL}
-Aurora SQL is the AWS default engine for the RDS databases engine
-it's proprietrary of AWS (no opensource), it cost 20\% more then the most expensive
-engine on RDS\\
-Replication of instances over the RDS apps uses one instances for write operation and
-the following for read operation\\
 
 \section{Route 53}
 Route 53 CNAME are aliases for other host with record tyoe \textbf{A} or \textbf{AAAA}\\
@@ -3126,7 +3122,9 @@ Immutable deployment is the minimum config that mantain alive the older applicat
 If your AWS Elastic Beanstalk application performs operations or workflows that take a long time to complete, 
 you can offload those tasks to a dedicated worker environment. 
 
-immutable updates traffic splitting mode can flush all accumulated Amazon EC2 burst balances
+immutable updates traffic splitting mode can flush all accumulated Amazon EC2 burst balances.
+
+You can configure multiple environment on ElasticBeanstalk.\\
 
 \section{API Gateway}
 AWS API Gateway can access an internal cache\\
@@ -3151,7 +3149,10 @@ release with a preconfigured ratio. Typically, the canary release receives a sma
 the production release takes up the rest.\\
 
 AWS Security Token Service(STS) is used by API Gateway for logging data to CloudWatch logs. 
-Hence, AWS STS has to be enabled for the Region that you're using.
+Hence, AWS STS has to be enabled for the Region that you're using.\\
+
+A client of your API can invalidate an existing cache entry and reload it from the integration endpoint for individual requests. 
+The client must send a request that contains the \textbf{"Cache-Control: max-age=0" header}.\\ 
 
 \section{AWS Budget}
 AWS Budget need a \textbf{minimum of 5 week} before it can show metrics extracted from budget and 
@@ -3175,7 +3176,8 @@ Customers may use four mechanisms for controlling access to Amazon S3 resources:
 \end{itemize}
 
 \textbf{Cross Origin Resource Sharing} (CORS) are used to share resources on a bucket B to be loaded on a web application
-hosted on a bucket A and they should be enabled on bucket B
+hosted on a bucket A and they should be enabled on bucket B.\\
+CORS allow sharing file hosted on S3 with another origin (S3 bucket).\\
 
 \textbf{S3 Select} enables applications to retrieve only a subset of data from an object by using simple SQL expressions. 
 By using S3 Select to retrieve only the data needed by your application.\\
@@ -3192,13 +3194,19 @@ Using server-side encryption with customer-provided encryption keys (\textbf{SSE
 
 
 \section{AWS RDS}
+Aurora SQL is the AWS default engine for the RDS databases engine
+it's proprietrary of AWS (no opensource), it cost 20\% more then the most expensive
+engine on RDS\\
+Replication of instances over the RDS apps uses one instances for write operation and
+the following for read operation\\
+
 One ore more read replicas on RDS could help on read-heavy operation.\\
 
-AWS RDS MySQL and PostGreSQL allow authentication with IAM Database Authentication
+AWS RDS MySQL and PostGreSQL allow authentication with IAM Database Authentication.\\
 
 In addition to strings, Redis supports lists, sets, sorted sets, hashes, bit arrays, and hyperlog logs.\\
 Applications can use these more advanced data structures to support a variety of use cases. For example, 
-you can use Redis Sorted Sets to easily implement a game leaderboard that keeps a list of players sorted by their rank.
+you can use Redis Sorted Sets to easily implement a game leaderboard that keeps a list of players sorted by their rank.\\
 
 If your workload is unpredictable, you can enable storage autoscaling for an Amazon RDS DB instance. With storage autoscaling enabled, 
 when Amazon RDS detects that you are running out of free database space it automatically scales up your storage.\\
@@ -3253,7 +3261,10 @@ and debug builds on a local machine.\\
 IAM Username and Password \textbf{are not supported} to access AWS CodeCommiy.\\
 
 AWS CodeDeploy action order is the following:\\
-DownloadBundle, BeforeInstall, ApplicationStart, ValidateService
+ApplicationStop, DownloadBundle, BeforeInstall, ApplicationStart, ValidateService.\\
+
+The simplest way to set up connections to AWS CodeCommit repositories is to configure Git credentials for CodeCommit in the IAM 
+console, and then use those credentials for HTTPS connections.
 
 \section{AWS DynamoDB}
 \textbf{LSI} stands for \textbf{Local Secondary Index}. Some applications only need to query data using the base table's primary
@@ -3330,13 +3341,12 @@ The standard CloudWatch metrics don't have any metrics for memory utilization de
 
 Use \textbf{associte-kms-key} CLI command to encrypt a CloudWatch log group
 
-\section{AWS API Gateway}
-A client of your API can invalidate an existing cache entry and reload it from the integration endpoint for individual requests. 
-The client must send a request that contains the \textbf{"Cache-Control: max-age=0" header}. 
-
 \section{Kinesis}
 The KPL is an easy-to-use, highly configurable library that helps you write to a Kinesis data stream. 
 It acts as an intermediary between your producer application code and the Kinesis Data Streams API actions.\\
+
+\section{AWS LoadBalancer}
+You can not specify public routable IP address to an ALB target
 
 \printindex
 \end{document}

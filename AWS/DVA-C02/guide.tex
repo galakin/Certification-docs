@@ -376,6 +376,10 @@ The visibility timeout value for a AWS SQS queue is in seconds is by defaults 30
 Long polling makes it inexpensive to retrieve messages from your Amazon SQS queue as soon as the messages are available. 
 Long polling helps reduce the cost of using Amazon SQS by eliminating the number of empty responses.\\
 
+The message deduplication ID is the token used for the deduplication of sent messages. If a message with a particular message 
+deduplication ID is sent successfully, any messages sent with the same message deduplication ID are accepted successfully but 
+aren't delivered during the 5-minute deduplication interval.\\
+
 \section{Amazon DynamoDB}
 DynamoDB is a \textbf{fast} and \textbf{flexible nonrelational database service }for any scale. DynamoDB enables customers 
 to offload the administrative burdens of operating and scaling distributed databases to AWS so that they don’t have to worry 
@@ -2202,7 +2206,10 @@ You can configure Application Auto Scaling to manage provisioned concurrency on 
 Use scheduled scaling to increase provisioned concurrency in anticipation of peak traffic. To increase provisioned concurrency 
 automatically as needed, use the Application Auto Scaling API to register a target and create a scaling policy.\\
 
-AWS Lambda service does not support Lambda functions that use multi-architecture container images
+AWS Lambda service does not support Lambda functions that use multi-architecture container images.\\
+
+You need to create a deployment package if you use the Lambda API to manage functions, or if you need to include libraries 
+and dependencies other than the AWS SDK.\\
 
 %Aws Fundamentals ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 \section{ASG: Autoscaling Group}
@@ -3346,7 +3353,21 @@ The KPL is an easy-to-use, highly configurable library that helps you write to a
 It acts as an intermediary between your producer application code and the Kinesis Data Streams API actions.\\
 
 \section{AWS LoadBalancer}
+Elastic Load Balancer is a managed load balancer.\\
+Application load balancers is Layer 7 (HTTP)\\
+Load balancing to multiple HTTP applications across machines (target groups)\\  
+Load balancing to multiple applications on the same machine (ex: containers)\\
+ALB are a great fit for micro services and container-based application\\
+ALB taget are: EC2 instances, ECS task, Lambda functions of private IPs.\\
+
 You can not specify public routable IP address to an ALB target
+
+NLB has one static IP for AZs and support assigning Elastic IPs.
+NLB are use for extreme performance with TCP and UDP protocols
+
+NLB target are: EC2 instances, private IPs and ALBs\\
+
+\textbf{Connection Draining}:  Time to complete “in-flight requests” while the instance is de-registering or unhealthy.\\
 
 \printindex
 \end{document}

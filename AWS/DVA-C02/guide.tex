@@ -1788,6 +1788,9 @@ Strongly consistent reads apply only while using the read operations (such as Ge
 
 ElastiCache is \textbf{NOT a supported destination} for Amazon Kinesis Data Firehose.\\
 
+Kinesis data stream allow tou to write your own stream data handler. Kinesis firehose is a fully managed stream
+data handler integrated with AWS resources.\\
+
 Amazon DynamoDB returns data to the application in 1 MB increments, and an application performs additional Scan 
 operations to retrieve the next 1 MB of data.\\
 the Scan operation can logically divide a table or secondary index into multiple segments, with multiple application 
@@ -2919,7 +2922,30 @@ You must use saved configurations to migrate an Elastic Beanstalk environment be
 You can save your environment's configuration as an object in Amazon Simple Storage Service (Amazon S3) 
 that can be applied to other environments during environment creation, or applied to a running environment.\\
 %35:00
-\subsection{Deployment Methods}
+
+To save data stored in a DV deployed with ElasticBeanstalk \textbf{make a snapshot} of the DB.\\
+
+Any resources created inside the ElasticBeanstalk directory \textbf{.ebextensions} is part of
+the EB template and it will be deleted after redeploying the template\\
+
+.ebextension is the directory responable on EB to store user custom resources on AWS\\
+
+ElasticBeanstalk  rolling with additional batches means that rollout is made on capacity with 100\%
+of instances running at the same time\\
+ElasticBeanstalk blue/green deployment involve the Route53 wigthed traffic\\
+Resources managed on the .ebextensions directory are deleted on environment changes\\
+
+AWS Beanstalk it's used to create and deploy web and mobile application\\
+
+Immutable deployment is the minimum config that mantain alive the older application on ElasticBeanstalk\\
+
+If your AWS Elastic Beanstalk application performs operations or workflows that take a long time to complete, 
+you can offload those tasks to a dedicated worker environment. 
+
+immutable updates traffic splitting mode can flush all accumulated Amazon EC2 burst balances.
+
+You can configure multiple environment on ElasticBeanstalk.\\
+
 
 \section{Developer note}
 Altough temporary credentials with "get-session-token" are most secure way to obtain extended 
@@ -3018,6 +3044,8 @@ number of items included in the output when the AWS CLI calls a service's API to
 	\item --starting-token
 \end{itemize}
 
+\textbf{--projection-expression} CLI option allow the rewtrieval of a subset of attribuites froma DynamoDB scan operation.\\
+
 \section{CloudFront}
 Amazon CloudFront work on a Content Delivery Network (CDN) that improve read performance for a data a using 
 a cache at edge\\
@@ -3036,10 +3064,11 @@ Then specify the parameters that you want CloudFront to use as a basis for cachi
 When a viewer request to CloudFront results in a cache miss (the requested object is not cached at the edge location), 
 CloudFront sends a request to the origin to retrieve the object. This is called an origin request.\\
 
-\textbf{Origin Groups} are for origin failure scenarios and not for request routing.
+\textbf{Origin Groups} are for origin failure scenarios and not for request routing.\\
 
-CloudFront can comminicate via HTTPS with both client and backend
+CloudFront can comminicate via HTTPS with both client and backend.\\
 
+Cloudfront origins are: S3 bucket and custom HTTP origin.\\
 \section{CloudFormation}
 The correct format for the CloudFormation \textbf{FindInMap} operation is:\\
 
@@ -3058,8 +3087,9 @@ The \textbf{Fn::GetAtt} intrinsic function returns the value of an attribute fro
 Exported Output Values in CloudFormation must have unique names within a single Region.\\
 
 To export a stack's output value, use the \textbf{Export} field in the Output section of the stack's template. 
-To import those values, use the Fn::ImportValue
+To import those values, use the Fn::ImportValue.\\
 
+You can referene code writteon on inline editor for CloudFormation as long as there are no other depnedency
 
 \section{AWS VPN}
 AWS Subnet allow VPN partitioning\\
@@ -3119,27 +3149,6 @@ Route 53 Aliases are used to point to AWS resources hostnames\\
 Aliases work for root domain and non-root domain\\
 Aliases record map hostnames to AWS resources\\
 
-\section{ElasticBeanstalk}
-Any resources created inside the ElasticBeanstalk directory \textbf{.ebextensions} is part of
-the EB template and it will be deleted after redeploying the template\\
-
-.ebextension is the directory responable on EB to store user custom resources on AWS\\
-
-ElasticBeanstalk  rolling with additional batches means that rollout is made on capacity with 100\%
-of instances running at the same time\\
-ElasticBeanstalk blue/green deployment involve the Route53 wigthed traffic\\
-Resources managed on the .ebextensions directory are deleted on environment changes\\
-
-AWS Beanstalk it's used to create and deploy web and mobile application\\
-
-Immutable deployment is the minimum config that mantain alive the older application on ElasticBeanstalk\\
-
-If your AWS Elastic Beanstalk application performs operations or workflows that take a long time to complete, 
-you can offload those tasks to a dedicated worker environment. 
-
-immutable updates traffic splitting mode can flush all accumulated Amazon EC2 burst balances.
-
-You can configure multiple environment on ElasticBeanstalk.\\
 
 \section{API Gateway}
 AWS API Gateway can access an internal cache\\
@@ -3207,6 +3216,7 @@ The Amazon S3 notification feature enables you to receive notifications when cer
 
 Using server-side encryption with customer-provided encryption keys (\textbf{SSE-C}) allows you to set your encryption keys.\\
 
+AWS s3 versioning is available only on \textbf{bucket level}
 
 \section{AWS RDS}
 Aurora SQL is the AWS default engine for the RDS databases engine
@@ -3365,7 +3375,9 @@ You can use it to synchronize user profile data across mobile devices and the we
 \section{CloudWatch}
 The standard CloudWatch metrics don't have any metrics for memory utilization details.\\
 
-Use \textbf{associte-kms-key} CLI command to encrypt a CloudWatch log group
+Use \textbf{associte-kms-key} CLI command to encrypt a CloudWatch log group.\\
+
+EventBridge is used to integrate Cloudwatch to trigger event on different AWS resoruces.\\
 
 \section{Kinesis}
 The KPL is an easy-to-use, highly configurable library that helps you write to a Kinesis data stream. 

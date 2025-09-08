@@ -3,6 +3,7 @@
 \newcommand{\mycomment}[1]{}
 \usepackage{imakeidx}
 \usepackage{tcolorbox}
+\usepackage{amsmath}
 
 \title{AWS Developer Certification}
 \author{Jacopo Pela}
@@ -2211,6 +2212,13 @@ AWS Lambda service does not support Lambda functions that use multi-architecture
 You need to create a deployment package if you use the Lambda API to manage functions, or if you need to include libraries 
 and dependencies other than the AWS SDK.\\
 
+If you create a stage variable to call a Lambda function through your API, you must add the required permissions.\\ 
+Update your Lambda function's resource-based AWS Identity and Access Management (IAM) policy so that it grants invoke permission 
+to the API Gateway.\\
+
+By allocating provisioned concurrency before an increase in invocations, you can ensure that all requests are served by 
+initialized instances with low latency.\\ 
+
 %Aws Fundamentals ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 \section{ASG: Autoscaling Group}
 Amazon EC2 Auto Scaling helps you ensure that you have the correct number of Amazon EC2 instances available to 
@@ -3217,7 +3225,18 @@ you can use Redis Sorted Sets to easily implement a game leaderboard that keeps 
 
 If your workload is unpredictable, you can enable storage autoscaling for an Amazon RDS DB instance. With storage autoscaling enabled, 
 when Amazon RDS detects that you are running out of free database space it automatically scales up your storage.\\
-Both Aurora and manged engine have autoscaling option available
+Both Aurora and manged engine have autoscaling option available.\\
+
+To calculate the WCU require use the following formula:\\
+\[
+  WCU = \frac{item}{second}*\frac{size KB}{1 KB}
+\]
+WCU is 2$*$WCU if there is a trasactional write\\
+
+To calculate the RCU require use the following formula:\\
+\[
+  RCU = \frac{item}{2 * second}*\frac{size KB}{4 KB}
+\]
 
 \section{AWS CDK}
 AWS CDK could define AWS resources on different programming languages that suppord the AWS CDK 

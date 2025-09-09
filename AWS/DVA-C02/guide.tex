@@ -604,7 +604,7 @@ DynamoDB Transitional Write is a "all-or-nothing" type of write operation in a D
 
 DynamoDB Minimum requiremet for an upsert operation is GetItem and UpdateItem
 
-{Amazon ElastiCache}
+\section{Amazon ElastiCache}
 Amazon ElastiCache can be used to significantly improve latency and throughput for many \textbf{read-heavy application workloads} or 
 \textbf{compute-intensive workloads} by allowing you to store the objects that are often read in the cache.\\
 
@@ -2965,24 +2965,15 @@ If we get the IP directly from the http request, we can notice that it is always
 changes rarely. This because the request comes from the ALB. Instead, we can use the \textbf{"X-Forwarded-For"} 
 header to get the original IP of the client\\
 
-Amazon RDS Read Replicas provide enhanced performance and durability for RDS database (DB) instances. 
-They make it easy to elastically scale out beyond the capacity constraints of a single DB instance for 
-read-heavy database workloads.\\
 
 Amazon ElastiCache for Redis is a caching layer that can be used to improve the performance of data 
 retrieval from a database. It supports encryption at rest and in transit, and can be configured for 
 high availability by using Redis Cluster\\
 
-The output of a state can be a copy of its input, the result it produces (for example, output from a 
-Task state’s Lambda function), or a combination of its input and result. Use ResultPath to control 
-which combination of these is passed to the state output.\\
-
 To allow the developer to perform a code push efficiently, without the need to update the API Gateway",
 this will require creating an alias referencing latest lambda version abd which can be referred to 
 using API Gateway Stage Variable.\\
 
-When you register a task definition, you must specify a list of container definitions that are passed 
-to the Docker daemon on a container instance.\\
 
 Based of the kind of hw it's possible to differentiate the logic. To retrieve this metadata, the 
 application should launch a curl command to the following link: \textbf{http://169.254.169.254/latest/meta-data/}.\\
@@ -3091,6 +3082,10 @@ To import those values, use the Fn::ImportValue.\\
 
 You can referene code writteon on inline editor for CloudFormation as long as there are no other depnedency
 
+The output of a state can be a copy of its input, the result it produces (for example, output from a 
+Task state’s Lambda function), or a combination of its input and result. Use ResultPath to control 
+which combination of these is passed to the state output.\\
+
 \section{AWS VPN}
 AWS Subnet allow VPN partitioning\\
 Routing table defines the internet access for a VPN Subnet\\
@@ -3141,14 +3136,13 @@ General Purpose SSD (gp2) volumes offer cost-effective storage that is ideal for
 latencies and the ability to burst to 3,000 IOPS for extended periods of time. Between a minimum of 100 IOPS (at 33.33 GiB and below) and a maximum of 
 16,000 IOPS (at 5,334 GiB and above), baseline performance scales linearly at 3 IOPS per GiB of volume size.\\
 
-
+EC2 support B/G and In-place deployment.\\
 
 \section{Route 53}
 Route 53 CNAME are aliases for other host with record tyoe \textbf{A} or \textbf{AAAA}\\
 Route 53 Aliases are used to point to AWS resources hostnames\\
 Aliases work for root domain and non-root domain\\
 Aliases record map hostnames to AWS resources\\
-
 
 \section{API Gateway}
 AWS API Gateway can access an internal cache\\
@@ -3247,6 +3241,11 @@ To calculate the RCU require use the following formula:\\
 \[
   RCU = \frac{item}{2 * second}*\frac{size KB}{4 KB}
 \]
+
+Amazon RDS Read Replicas provide enhanced performance and durability for RDS database (DB) instances. 
+They make it easy to elastically scale out beyond the capacity constraints of a single DB instance for 
+read-heavy database workloads.\\
+
 
 \section{AWS CDK}
 AWS CDK could define AWS resources on different programming languages that suppord the AWS CDK 
@@ -3361,7 +3360,9 @@ If you use a target tracking scaling policy based on a custom Amazon SQS queue m
 to the demand curve of your application more effectively.\\
 Use backlog per instance metric with target tracking scaling policy.\\
 
-EC2 support B/G and In-place deployment.\\
+
+When you register a task definition, you must specify a list of container definitions that are passed 
+to the Docker daemon on a container instance.\\
 
 \section{Cognito}
 

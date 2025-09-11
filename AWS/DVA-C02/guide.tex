@@ -372,6 +372,8 @@ The message group ID \textbf{MessageGroupId} is the tag that specifies that a me
 With SQS you can retrive \textbf{max 10 messages} at the same time.\\
 
 The visibility timeout value for a AWS SQS queue is in seconds is by defaults 30 seconds.\\
+Use ChangeMessageVisibility action to extend a message's visibility timeout.\\
+
 \textbf{You can't change the queue type after you create it}.\\
 
 Long polling makes it inexpensive to retrieve messages from your Amazon SQS queue as soon as the messages are available. 
@@ -380,6 +382,8 @@ Long polling helps reduce the cost of using Amazon SQS by eliminating the number
 The message deduplication ID is the token used for the deduplication of sent messages. If a message with a particular message 
 deduplication ID is sent successfully, any messages sent with the same message deduplication ID are accepted successfully but 
 aren't delivered during the 5-minute deduplication interval.\\
+
+The visibility timeout value for the queue is in seconds, which defaults to 30 seconds\\
 
 \section{Amazon DynamoDB}
 DynamoDB is a \textbf{fast} and \textbf{flexible nonrelational database service }for any scale. DynamoDB enables customers 
@@ -2222,6 +2226,11 @@ to the API Gateway.\\
 By allocating provisioned concurrency before an increase in invocations, you can ensure that all requests are served by 
 initialized instances with low latency.\\ 
 
+\textbf{Stage variables} are name-value pairs that you can define as configuration attributes associated with a deployment stage of an API. 
+They act like environment variables and can be used in your API setup and mapping templates. With deployment stages in API Gateway, 
+you can manage multiple release stages for each API, such as alpha, beta, and production.\\
+
+
 %Aws Fundamentals ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 \section{ASG: Autoscaling Group}
 Amazon EC2 Auto Scaling helps you ensure that you have the correct number of Amazon EC2 instances available to 
@@ -2965,7 +2974,6 @@ If we get the IP directly from the http request, we can notice that it is always
 changes rarely. This because the request comes from the ALB. Instead, we can use the \textbf{"X-Forwarded-For"} 
 header to get the original IP of the client\\
 
-
 Amazon ElastiCache for Redis is a caching layer that can be used to improve the performance of data 
 retrieval from a database. It supports encryption at rest and in transit, and can be configured for 
 high availability by using Redis Cluster\\
@@ -2973,7 +2981,6 @@ high availability by using Redis Cluster\\
 To allow the developer to perform a code push efficiently, without the need to update the API Gateway",
 this will require creating an alias referencing latest lambda version abd which can be referred to 
 using API Gateway Stage Variable.\\
-
 
 Based of the kind of hw it's possible to differentiate the logic. To retrieve this metadata, the 
 application should launch a curl command to the following link: \textbf{http://169.254.169.254/latest/meta-data/}.\\
@@ -2983,6 +2990,12 @@ Amazon ElastiCache Redis on cluster mode is the best solution for RDS databases.
 Use ElastiCache to mantain user session on a EC2 instance during a B/G deployment.\\
 
 Only vertical scaling is available for ElastiCache when \textbf{cluster mode} is disabled.\\
+
+SecurityGropu are steteful, allowing inbound traffic to one port enable te connection.\\
+Network ACL are stateless, you need to allow connection on both inbound and outbound traffic.\\
+
+You need to activate IAM user access to the Billing and Cost Management console for all the users who need access.\\
+
 
 \section{AWS SAM}
 AWS SAM application can be redeployed with the \textbf{build} and \textbf{deploy} command\\
@@ -3009,6 +3022,9 @@ The sam sync command is specifically designed to enable rapid iteration by synch
 serverless application on AWS. This allows developers to quickly test incremental changes without the overhead of 
 redeploying the entire stack, aligning perfectly with the developer's requirements.\\
 
+The \textbf{AWS Serverless Application Repository} is a managed repository for serverless applications. It enables teams, 
+organizations, and individual developers to store and share reusable applications, and easily assemble and deploy serverless 
+architectures in powerful new ways.\\
 
 \section{AWS KMS}
 AWS encrypt file with AES-256 encryption algorithm\\
@@ -3139,6 +3155,9 @@ latencies and the ability to burst to 3,000 IOPS for extended periods of time. B
 EC2 support B/G and In-place deployment.\\
 
 \section{Route 53}
+CNAME records can be used to map one domain name to another. Although you should keep in mind that the DNS 
+protocol does not allow you to create a CNAME record for the top node of a DNS namespace.\\
+
 Route 53 CNAME are aliases for other host with record tyoe \textbf{A} or \textbf{AAAA}\\
 Route 53 Aliases are used to point to AWS resources hostnames\\
 Aliases work for root domain and non-root domain\\
@@ -3171,6 +3190,13 @@ Hence, AWS STS has to be enabled for the Region that you're using.\\
 
 A client of your API can invalidate an existing cache entry and reload it from the integration endpoint for individual requests. 
 The client must send a request that contains the \textbf{"Cache-Control: max-age=0" header}.\\ 
+
+API Gateway lets you use \textbf{mapping templates} to map the payload from a method request to the corresponding integration request and 
+from an integration response to the corresponding method response.\\
+
+A \textbf{usage plan} specifies who can access one or more deployed API stages and methods—and also how much and how fast they can access them.\\ 
+You can configure usage plans and API keys to allow customers to access selected APIs at agreed-upon request rates and quotas 
+that meet their business requirements and budget constraints.\\
 
 \section{AWS Budget}
 AWS Budget need a \textbf{minimum of 5 week} before it can show metrics extracted from budget and 
@@ -3267,15 +3293,16 @@ to assume this role.\\
 Instead of creating individual policies for each user, you can use policy variables and create a single policy that applies
 to multiple users.\\
 
-CodeCommit and CodeDeploy use appspec.yaml file on root dit to define build option
-and configuration.\\
-\textbf{ValidateService} is the last CodeDeploy hook available after an applicatin is installed and it's running.\\
 
 IAM is used as a certificate manager only when you must support HTTPS connections in a Region that is not supported by ACM. 
 IAM securely encrypts your private keys and stores the encrypted version in IAM SSL certificate storage.
 
+IAM \textbf{Access Analyzer} simplifies inspecting unused access to guide you toward least privilege. 
+Security teams can use IAM Access Analyzer to gain visibility into unused access across their AWS organization and automate 
+how they rightsize permissions.\\
 
-\section{AWS CodeBuild}
+
+\section{AWS CodeBuild & CodeCommit}
 
 CodeBuild scales automatically, the organization does not have to do anything for scaling or for parallel builds.\\
 CodeBuild compiles your source code, runs unit tests, and produces artifacts that are ready to deploy. CodeBuild eliminates 
@@ -3293,13 +3320,17 @@ With the Local Build support for AWS CodeBuild, you just specify the location of
 and CodeBuild runs build scripts for compiling, testing, and packaging your code. You can use the AWS CodeBuild agent to test 
 and debug builds on a local machine.\\
 
-IAM Username and Password \textbf{are not supported} to access AWS CodeCommiy.\\
+IAM Username and Password \textbf{are not supported} to access AWS CodeCommit.\\
 
 AWS CodeDeploy action order is the following:\\
 ApplicationStop, DownloadBundle, BeforeInstall, ApplicationStart, ValidateService.\\
 
 The simplest way to set up connections to AWS CodeCommit repositories is to configure Git credentials for CodeCommit in the IAM 
 console, and then use those credentials for HTTPS connections.
+
+CodeCommit and CodeDeploy use appspec.yaml file on root dit to define build option
+and configuration.\\
+\textbf{ValidateService} is the last CodeDeploy hook available after an applicatin is installed and it's running.\\
 
 \section{AWS DynamoDB}
 \textbf{LSI} stands for \textbf{Local Secondary Index}. Some applications only need to query data using the base table's primary
@@ -3321,6 +3352,12 @@ Time To Live (TTL) for DynamoDB allows you to define when items in a table expir
 from the database.\\
 
 \section{X-Ray}
+AWS X-Ray helps developers analyze and debug production, distributed applications, such as those built using a microservices 
+architecture. With X-Ray, you can understand how your application and its underlying services are performing to identify and 
+troubleshoot the root cause of performance issues and errors. X-Ray provides an end-to-end view of requests as they travel 
+through your application, and shows a map of your application’s underlying components.\\
+You can use X-Ray to collect data across AWS Accounts.\\
+
 \textbf{AWS\_XRAY\_DAEMON\_ADDRESS}\\
 Set the host and port of the X-Ray daemon listener. By default, the SDK uses 127.0.0.1:2000 for both trace data (UDP) 
 and sampling (TCP).\\
@@ -3400,6 +3437,9 @@ NLB are use for extreme performance with TCP and UDP protocols
 NLB target are: EC2 instances, private IPs and ALBs\\
 
 \textbf{Connection Draining}:  Time to complete “in-flight requests” while the instance is de-registering or unhealthy.\\
+
+Application Load Balancer can be used to securely authenticate users for accessing your applications.\\
+You can use Cognito User Pools to authenticate users through well-known social IdPs.\\
 
 \printindex
 \end{document}

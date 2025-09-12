@@ -3441,6 +3441,15 @@ NLB target are: EC2 instances, private IPs and ALBs\\
 Application Load Balancer can be used to securely authenticate users for accessing your applications.\\
 You can use Cognito User Pools to authenticate users through well-known social IdPs.\\
 
+\textbf{ALB access logs} - Elastic Load Balancing provides access logs that capture detailed information about 
+requests sent to your load balancer. Each log contains information such as the time the request was received, 
+the client's IP address, latencies, request paths, and server responses. You can use these access logs to analyze 
+traffic patterns and troubleshoot issues.\\
+Access logging is an optional feature of Elastic Load Balancing that is disabled by default.\\
+
+The percentage of traffic received through a ELB is equally divided between instances in the same Region 
+\textbf{regarding of the Available Zone}.
+
 \printindex
 \end{document}
 

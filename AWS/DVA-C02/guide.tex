@@ -1804,6 +1804,11 @@ The \textbf{DeleteTable} operation deletes a table and all of its items. After a
 table is in the \textbf{DELETING} state until DynamoDB completes the deletion.\\
 \textbf{PurgeTable} DON'T exist as an operation
 
+Amazon ElastiCache Redis on cluster mode is the best solution for RDS databases.\\ 
+
+Use ElastiCache to mantain user session on a EC2 instance during a B/G deployment.\\
+
+Only vertical scaling is available for ElastiCache when \textbf{cluster mode} is disabled.\\
 
 \section{AWS Lambda}
 AWS Lambda lets you run code without provisioning or managing servers. You pay only for the compute time you consume - there is no charge 
@@ -2985,13 +2990,7 @@ using API Gateway Stage Variable.\\
 Based of the kind of hw it's possible to differentiate the logic. To retrieve this metadata, the 
 application should launch a curl command to the following link: \textbf{http://169.254.169.254/latest/meta-data/}.\\
 
-Amazon ElastiCache Redis on cluster mode is the best solution for RDS databases.\\ 
-
-Use ElastiCache to mantain user session on a EC2 instance during a B/G deployment.\\
-
-Only vertical scaling is available for ElastiCache when \textbf{cluster mode} is disabled.\\
-
-SecurityGropu are steteful, allowing inbound traffic to one port enable te connection.\\
+SecurityGropu are steteful, allowing inbound traffic to one port enable the outbound connection.\\
 Network ACL are stateless, you need to allow connection on both inbound and outbound traffic.\\
 
 You need to activate IAM user access to the Billing and Cost Management console for all the users who need access.\\
@@ -3101,6 +3100,8 @@ You can referene code writteon on inline editor for CloudFormation as long as th
 The output of a state can be a copy of its input, the result it produces (for example, output from a 
 Task state’s Lambda function), or a combination of its input and result. Use ResultPath to control 
 which combination of these is passed to the state output.\\
+
+AWS CloudFormation \textbf{Condition} resources can't be associated to \textbf{Parameter} resources
 
 \section{AWS VPN}
 AWS Subnet allow VPN partitioning\\
@@ -3236,7 +3237,10 @@ The Amazon S3 notification feature enables you to receive notifications when cer
 
 Using server-side encryption with customer-provided encryption keys (\textbf{SSE-C}) allows you to set your encryption keys.\\
 
-AWS s3 versioning is available only on \textbf{bucket level}
+AWS s3 versioning is available only on \textbf{bucket level}.\\
+
+AWS S3 use the \textbf{AES256} encrypt algorithm  to upload file over S3, this is the value that need to be 
+specified con the buckete policy to ensure the upload of an encrypted file
 
 \section{AWS RDS}
 Aurora SQL is the AWS default engine for the RDS databases engine
@@ -3293,7 +3297,6 @@ to assume this role.\\
 Instead of creating individual policies for each user, you can use policy variables and create a single policy that applies
 to multiple users.\\
 
-
 IAM is used as a certificate manager only when you must support HTTPS connections in a Region that is not supported by ACM. 
 IAM securely encrypts your private keys and stores the encrypted version in IAM SSL certificate storage.
 
@@ -3301,8 +3304,9 @@ IAM \textbf{Access Analyzer} simplifies inspecting unused access to guide you to
 Security teams can use IAM Access Analyzer to gain visibility into unused access across their AWS organization and automate 
 how they rightsize permissions.\\
 
+\textbf{Trust policy} is the only resource bound policy supported by AWS IAM.\\
 
-\section{AWS CodeBuild & CodeCommit}
+\section{AWS CodeBuildandd CodeCommit}
 
 CodeBuild scales automatically, the organization does not have to do anything for scaling or for parallel builds.\\
 CodeBuild compiles your source code, runs unit tests, and produces artifacts that are ready to deploy. CodeBuild eliminates 
@@ -3356,7 +3360,11 @@ AWS X-Ray helps developers analyze and debug production, distributed application
 architecture. With X-Ray, you can understand how your application and its underlying services are performing to identify and 
 troubleshoot the root cause of performance issues and errors. X-Ray provides an end-to-end view of requests as they travel 
 through your application, and shows a map of your application’s underlying components.\\
+
 You can use X-Ray to collect data across AWS Accounts.\\
+
+If you can't see traced on an X-Ray Enabled AWS resources it mean that the IAM Role associated with the resources is not
+configured so enable the metrics exposure through AWS X-Ray
 
 \textbf{AWS\_XRAY\_DAEMON\_ADDRESS}\\
 Set the host and port of the X-Ray daemon listener. By default, the SDK uses 127.0.0.1:2000 for both trace data (UDP) 
@@ -3386,8 +3394,6 @@ Macie finding on S3 are the following:
 	\item Personal
 \end{itemize}
 
-If you can't see traced on an X-Ray Enabled AWS resources it mean that the IAM Role associated with the resources is not
-configured so enable the metrics exposure through AWS X-Ray
 
 \section{ECS}
 Use the awslogs log driver to configure the containers in your tasks to send log information to CloudWatch Logs.
@@ -3397,10 +3403,10 @@ If you use a target tracking scaling policy based on a custom Amazon SQS queue m
 to the demand curve of your application more effectively.\\
 Use backlog per instance metric with target tracking scaling policy.\\
 
-
 When you register a task definition, you must specify a list of container definitions that are passed 
 to the Docker daemon on a container instance.\\
 
+With fargate ECS deployment you can't use daemon as you don't have access to the instances of the ECS cluster.\\
 \section{Cognito}
 
 Cognito User Pools can help you with token handling and management, like creating JWT token.\\

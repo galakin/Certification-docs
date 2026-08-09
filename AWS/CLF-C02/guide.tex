@@ -30,14 +30,42 @@ applications, and other IT resources.\\
 Through a cloud services platform with pay-as-you-go pricing\\
 You can provision exactly the right type and size of computing resources you need\\
 
+AWS is one of the many cloud provider available on the market!\\
+
+The five caratteristics of cloud compunting are the following:
+\begin{itemize}
+	\item \textbf{On-demand services}: without the need of human interaction 
+	\item \textbf{Broad network access}: resources can be accessed everywhere
+	\item \textbf{Multi-tenancy and resource pooling} multiple customer ar served on the same resources
+	\item \textbf{Rapid elasticity and scalability} easily create and dispose of resources 
+	\item \textbf{Measured service}	user pay for what they use 
+\end{itemize}
+
+AWS has 3 pricing fundamentals:
+\begin{itemize}
+	\item \textbf{Compute}: Pay for your computational time 
+	\item \textbf{Storage}: Pay for data stored 
+	\item \textbf{Data transfered OUT of the cloud} 
+\end{itemize}
+
+Shared resposability Model\\
+You are responsible for the security \textbf{IN} the cloud\\
+AWS is resposible for the security \textbf{OF} the cloud\\
+
 \section{IAM}
+AWS IAM is one of the few \textbf{global} services\\
+
+On AWS you apply the \textbf{least privilege} principle for the user and services IAM policy
+
 \subsection{IAM Security Tools}
 \textbf{IAM Credentials Report} (account-level) is a service used to lists of all your account's users and the status of their various
 credentials.\\
 \textbf{IAM Access Advisor} (user-level) is a service used to shows the service permissions granted to a user and when those
 services were last accessed. You can use this information to revise your policies.\\
 
-\textbf{Don’t use the root account except for AWS account setup}
+\textbf{Don’t use the root account except for AWS account setup}\\
+
+EC2 User Data script run with \textbf{root user}
 
 \section{EC2}
 AWS has the following naming convention:\\
@@ -51,15 +79,77 @@ Security Groups control how traffic is allowed into or out of our instances.\\
 Security groups only contain \textbf{allow} rules.\\
 Security groups rules can reference by IP or by security group.\\
 They controll both inbout and outbound traffic
+Security Group are linked to the specific \textbf{region and VPC} where they are created
 
 If your application is not accessible (time out), then it’s a security group issue.\\
 Usage beyond Savings Plans is billed at the On-Demand price.\\
+
 \subsection{EBS Volume}
 They can only be mounted to one instance at a time.\\
 They are bound to a specific availability zone.\\
 It’s locked to an Availability Zone, to move a volume you need to take a snapshot.\\
+
 \subsection{EBS Snapshots}
 Make a backup (snapshot) of your EBS volume at a point in time.\\
+You can move your EBS snapshot to a cheaper archive tier.\\
+You can specify a retention policy (1 day - 1 year) for your deleted EBS snapshot\\
+
+\subsection{AMI}
+AMI are customization of an EC2 instance
+\textbf{EC2 Image Builder} is the service use to schedule and organize AMI creation
+
+\subsection{EC2 Image Builder}
+Used to automate the creation of Virtual Machines or container images.\\
+Can be run on schedule
+
+\subsection{EC2 Instance store}
+high performance disk attched to EC2 instances
+
+\subsection{EFS}
+EFS can be mounthed to multiple target (100s of EC2 at the same time) and is not
+available zone bounded
+
+\subsection {AWS FSx}
+Launch 3th party high performance sys on AWS.\\
+FSx is a windows native shared file system
+
+\section{AWS S3}
+Maximum size of an s3 object si 50TB.\\
+For uploadin object bigger than 5Gb we need to use \textbf{multi-part upload}.\\
+
+S3 bucket policy are used for cross-account bucket/object sharing.\\
+
+S3 bucket versioning is enabled at bucket level
+
+\subsection{IAM Access Analyzer for S3}
+Ensure that only the correct people have access to your S3 bucket
+
+\subsection{AWS Snowball}
+On-edge device to \textbf{collect and process} data and \textbf{migrate} them on AWS
+
+
+\subsection{AWS Storage Gateway}
+Brigde between the on premise data and AWS data storage option (S3, EBS,...)
+
+\section{Database solutions}
+\subsection{AWS RDS}
+RDS isa \textbf{Relational} Database that use SQL data formatting.\\
+Amazon Aurora RDS engine have the \textbf{serverless} option, where we don't provision a capacity for the daatabase
+but the size in automatically managed by AWS
+
+\subsection{ElastiCache}
+ElastiCache is the managed cache solution for AWS
+
+\subsection{DynamoDB}
+The noSQL database service for AWS with serverless database capability.\\
+\textbf{DAX} is the in-memory cache service for dynamoDB.
+
+\subsection{Global Tables}
+Make a DyamoDB database accessible with low latency on multiple region
+
+\subsection{Redshift}
+OLAP (online analytical process) database with serverless capability
+
 \printindex
 \end{document}
 

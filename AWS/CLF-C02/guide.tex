@@ -20,7 +20,7 @@
 \newpage
 
 The certification cover over \textbf{40 AWS services}\\
-Creation resources in the cloud cost money.\\
+Creating resources in the cloud cost money.\\
 
 Creating and AWS account require an email for the root user and and AWS account name.
 You also need a password to authenticate with your root email.\\
@@ -48,11 +48,26 @@ AWS has 3 pricing fundamentals:
 	\item \textbf{Data transfered OUT of the cloud} 
 \end{itemize}
 
+For the six advantage of Cloud Computing remember: \textbf{Trade capital expense for variable expense, Increase speed and agility}
+
 Shared resposability Model\\
 You are responsible for the security \textbf{IN} the cloud\\
 AWS is resposible for the security \textbf{OF} the cloud\\
 
-AWS global services are: \textbf{IAM, CloudFront, WAF and Route53}
+AWS global services are: \textbf{IAM, CloudFront, WAF and Route53, WorkSpace}
+
+\textbf{Software as a Service (SaaS)}\\
+Software as a Service provides you with a completed product that is run and managed by the service provider. 
+In most cases, people referring to Software as a Service are referring to end-user applications. 
+With a SaaS offering, you do not have to think about how the service is maintained or how the underlying 
+infrastructure is managed; you only need to think about how you will use that particular piece of software.\\
+
+\textbf{Platform as a Service (PaaS)}
+Platform as a Service (PaaS) as a service removes the need for organizations to manage the underlying infrastructure 
+(usually hardware and operating systems) and allow you to focus on the \textbf{deployment and management of your applications}. 
+This helps you be more efficient as you don’t need to worry about resource procurement, capacity planning, software maintenance
+, patching, or any of the other undifferentiated heavy lifting involved in running your application.\\
+Thinsk PaaS thin AWS, Azure and Openshift
 
 \section{IAM}
 AWS IAM is one of the few \textbf{global} services\\
@@ -67,10 +82,15 @@ services were last accessed. You can use this information to revise your policie
 
 \textbf{Don’t use the root account except for AWS account setup}\\
 
+\textbf{Universal 2nd Factor} (U2F) Security Key is a device that you can plug into a USB port on your computer.\\
+\textbf{Hardware Multi-Factor Authentication} is a hardware device that generates a six-digit numeric code based upon a 
+time-synchronized one-time password algorithm.\\
+
 \section{EC2}
 
 EC2 User Data script run with \textbf{root user}.\\
-EC2 instance are billed on a \textbf{per minute (60 sec)} base.\\
+EC2 On-Demand instance ar billed with the \textbf{pay per second} timeframe with a \textbf{one-minute minimum charge} based 
+on the EC2 Instance
 
 AWS has the following naming convention:\\
 \textbf{m5.2xlarge}\\
@@ -79,6 +99,13 @@ AWS has the following naming convention:\\
 • 2xlarge: size within the instance class\\
 
 Usage beyond Savings Plans is billed at the On-Demand price.\\
+
+An Amazon EC2 Dedicated Host allows you to use your eligible software licenses from vendors such as Microsoft and Oracle 
+on Amazon EC2 so that you get the flexibility and cost-effectiveness of using your licenses, but with the resiliency, 
+simplicity, and elasticity of AWS. An Amazon EC2 Dedicated Host is a physical server fully dedicated for your use, 
+so you can help address corporate compliance requirement.\\
+
+\textbf{Dedicated Host} support \textbf{Bring Your Own License (BYOL)} capability.\\ 
 
 \subsection{Security Groups}
 Security Groups control how traffic is allowed into or out of our instances.\\
@@ -121,18 +148,27 @@ available zone bounded.\\
 Amazon EC2 instances can access your file system across AZs, regions, and VPCs, while on-premises servers 
 can access using AWS Direct Connect or AWS VPN.\\
 \textbf{EFS Infrequent Access (IA)} is 92\% cheaper compared to EFS Standard.\\
+AWS EFS can be used with on-premise system.\\
 
 \subsection {AWS FSx}
 Launch 3th party high performance sys on AWS.\\
-FSx is a windows native shared file system
+FSx is a windows native shared file system.\\
 
-\textbf{High availability} means running your application / system in at least 2 Availability Zones
+\textbf{High availability} means running your application / system in at least 2 Availability Zones\\
+
+\textbf{Elasticity} is the ability to acquire resources as you need them and release resources when you no 
+longer need them. In the cloud, you want to do this automatically.\\
+
+\textbf{Agility} is the ability to rapidly develop, test and launch software applications that drive business growth.\\
 
 \section{AWS S3}
+\textbf{Key-value based object storage}\\
 Maximum size of an s3 object si 50TB.\\
 For uploading object bigger than 5Gb we need to use \textbf{multi-part upload}.\\
 
 S3 bucket policy are used for cross-account bucket/object sharing.\\
+
+\textbf{Data transferred out is free when it's transferred to a AWS service in the same AZ}\\
 
 S3 bucket versioning is enabled at bucket level.\\
 Amazon S3 One Zone-Infrequent Access (S3 One Zone-IA) is for data that is accessed less frequently but 
@@ -157,8 +193,9 @@ that seamlessly connect on-premises applications to cloud storage, caching data 
 \subsection{S3 Express One Zone}
 AWS S3 storage fitted for operation that need millisecond retrieval time for storaged objects.\\
 
-Encryption in transit and at rest are a client responsability for AWS S3
+Encryption in transit and at rest are a client responsability for AWS S3\\
 
+S3 Intelligent tier \textbf{don't charge} for data retrieval\\
 \section{Database solutions}
 \subsection{AWS RDS}
 RDS isa \textbf{Relational} Database that use SQL data formatting.\\
@@ -168,7 +205,8 @@ but the size in automatically managed by AWS.\\
 When you provision an Amazon RDS Multi-AZ Instance with one standby, Amazon RDS automatically creates a primary DB 
 Instance and synchronously replicates the data to a standby instance in a different Availability Zone (AZ).\\
 
-Read Replica improves \textbf{database scalability}
+Read replica need to be \textbf{manually approved} to be its own standalone DB instance.\\
+Read Replica improves \textbf{database scalability}.\\
 
 \subsection{ElastiCache}
 ElastiCache is the managed cache solution for AWS.\\
@@ -185,7 +223,10 @@ Standard and IA table class.\\
 You can use Amazon DynamoDB to store recommendation results with the \textbf{LEAST operational overhead} for any scale.
 
 \subsection{Global Tables}
-Make a DyamoDB database accessible with low latency on multiple region
+Make a DyamoDB database accessible with low latency on multiple region.\\
+DynamoDB global tables replicate data automatically across your choice of AWS Regions and automatically scale capacity 
+to accommodate your workloads. 
+
 
 \subsection{Redshift}
 Amazon Redshift is a fully-managed petabyte-scale cloud-based data warehouse product designed for large scale data 
@@ -224,8 +265,13 @@ or website, plus a cost-effective, monthly plan. Amazon Lightsail offers several
 systems, development stacks, and web applications
 
 \section{Infrastructure at scale}
-\subsection{SSM}
-SSM Service help manage the EC2 instance and on-premise server
+
+\subsection{AWS System Manager - SSM}
+AWS Systems Manager gives you visibility and control of your infrastructure on AWS. Systems Manager provides a 
+unified user interface so you can view operational data from multiple AWS services and allows you to automate 
+operational tasks such as collecting software inventory, running commands, managing patches, and configuring 
+servers across AWS Cloud as well as on-premises infrastructure.\\
+SSM Service help manage the EC2 instance and on-premise server.\\
 
 \section{AWS  Budget}
 You can use AWS Budgets to set reservation utilization or coverage targets and receive alerts when your 
@@ -244,38 +290,32 @@ following \textbf{AWS best practices} on:
 
 \section{CloudTrail}
 By default, the log files delivered by CloudTrail to your S3 bucket are encrypted using server-side encryption with Amazon S3 managed keys (SSE-S3)
-
-\section{AWS Private Link}
-\textbf{AWS PrivateLink} enables private connectivity between VPCs and supported AWS services without traffic traversing the 
-public internet. It ensures secure communication for applications and services.
-
-\section{AWS Site-to-site}
-AWS Site-to-Site VPN creates a secure connection between your data center or branch office and your AWS cloud resources. 
-\textbf{This connection goes over the public internet}.\\
-\textbf{Virtual private gateway (VGW)/Transit Gateway and Customer Gateway} are the components of an AWS Site-to-Site VPN
-
-\section{Amazon Transcribe}
-You can use Amazon Transcribe to add speech-to-text capability to your applications.
-
-\section{Amazon Polly}
-You can use Amazon Polly to turn text into lifelike speech thereby allowing you to create applications that talk.
-
-\section{Shared responsability model}
-Under the AWS Shared Responsibility Model, customers are responsible for managing their data, 
-\textbf{including data encryption}.
+CloudTrail events provide a history of both API and non-API account activity made through the \textbf{AWS Management Console}, 
+AWS SDKs, command line tools, and other AWS services.\\
+Think account-specific activity and audit; think CloudTrail.\\
 
 \section{AWS Support}
+You should use the \textbf{AWS Developer Support} plan if you are testing or doing early development on AWS and want the ability 
+to get \textbf{email based technical support} during business hours as well as general architectural guidance as you build and test.\\ 
 You should use \textbf{AWS Business Support} if you have production workloads on AWS and want 24x7 phone, email and chat
 access to technical support and architectural guidance in the context of your specific use-cases.\\
 You should use the \textbf{AWS Enterprise On-Ramp Support} plan if you have production/business critical workloads.\\
-You should use the \textbf{AWS Developer Support} plan if you are testing or doing early development on AWS and want the ability 
-to get \textbf{email based technical support} during business hours as well as general architectural guidance as you build and test. 
 
 The \textbf{AWS Abuse team} can assist you when AWS resources are used to engage in abusive behavior.\\
 
 The \textbf{Acceptable Use Policy} describes prohibited uses of the web services offered by Amazon Web Services
+
+\subsection{APN Consulting Partner}
+The AWS Partner Network (APN) is the global partner program for technology and consulting businesses that leverage 
+Amazon Web Services to build solutions and services for customers.
+
+\subsection{APN Technology Partner}
+APN Technology Partners provide hardware, connectivity services, or software solutions that are either hosted on or integrated with, the AWS Cloud. APN
+
 \section{AWS WAF}
-WAF protect against common exploits at \textbf{Layer 7}
+WAF protect against common exploits at \textbf{Layer 7}.\\
+AWS WAF can be deployed on the following services:
+\textbf{Amazon CloudFront, Application Load Balancer, Amazon API Gateway, AWS AppSync}
 
 \section{Amazon Shield}
 AWS Shield Advanced provides expanded DDoS attack protection for web applications running on the following resources: 
@@ -301,20 +341,47 @@ bucket in the target region
 WaveLength Zones are infrastructure deployments embedded within the telecommunications providers’
 datacenters at the edge  of the 5G networks
 
+\section{ElasticBeanstalk}
+With basic health reporting, the AWS Elastic Beanstalk service \textbf{does not publish any metrics to Amazon 
+CloudWatch}\\
+
 \section{VPC}
+
+ALB - HTTP/HTPPS traffic\\
+NLB - TCP/UDP traffic\\
+
 A gateway endpoint is a gateway that you specify as a target for a route in your route table for traffic 
 destined to a supported AWS service. The following AWS services are supported:
 \begin{itemize}
 	\item Amazon Simple Storage Service (Amazon S3)
 	\item Amazon DynamoDB
 \end{itemize}
+You may see a question around this concept in the exam. Just remember that only Amazon S3 and Amazon DynamoDB 
+support VPC gateway endpoint. All other services that support VPC Endpoints use a VPC interface endpoint.\\
 
 \subsection{Internet Gateway}
 An Internet Gateway is a horizontally scaled, redundant, and highly available VPC component that allows communication between instances 
 in your VPC and the internet. Therefore, it imposes no availability risks or bandwidth constraints on your network traffic.\\
+Internet Gateway communication \textbf{use the public internet}.\\
 
+\subsection{NAT Gateways}
 NAT Gateways (AWS-managed) and NAT Instances (self-managed) allow your instances in your Private Subnets
 to access the internet while remaining private.\\
+
+\subsection{AWS Private Link}
+\textbf{AWS PrivateLink} enables private connectivity between VPCs and supported AWS services without traffic traversing the 
+public internet. It ensures secure communication for applications and services.
+
+\subsection{AWS Site-to-site}
+AWS Site-to-Site VPN creates a secure connection between your data center or branch office and your AWS cloud resources. 
+\textbf{This connection goes over the public internet}.\\
+\textbf{Virtual private gateway (VGW)/Transit Gateway and Customer Gateway} are the components of an AWS Site-to-Site VPN
+
+\subsection{Customer gateway}
+A customer gateway device is a physical or software appliance on your side of a Site-to-Site VPN connection. 
+You or your network administrator must configure the device to work with the Site-to-Site VPN connection.
+You can enable access to your remote network from your VPC by creating an AWS Site-to-Site VPN (Site-to-Site VPN) connection, 
+and configuring routing to pass traffic through the connection.\\
 
 \subsection{VPC Flow Logs}
 Capture information about IP traffic going into your interfaces.\\
@@ -325,11 +392,22 @@ Balancers, ElastiCache, RDS, Aurora, etc…\\
 Connect two VPC, privately using AWS’ network.\\
 VPC Peering connection is \textbf{not transitive}\\
 
+\subsection{Direct Connect}
+AWS Direct Connect creates a dedicated private connection from a remote network to your VPC. This is a private 
+connection and does not use the public internet. Takes at least a month to establish this connection. 
+\textbf{AWS Direct Connect cannot be used to interconnect VPCs}.
+
 \subsection{AWS PrivateLink}
 Most secure \& scalable way to expose a service to 1000s of VPCs.\\
-Does not require VPC peering, internet gateway, NAT, route tables.., bui requires a network load balancer and ENI.\\
+Does not require VPC peering, internet gateway, NAT, route tables.., but requires a network load balancer and ENI.\\
 
-Transit Gateway: Connect thousands of VPC and on-premises networks together
+\subsection{Transit Gateway}
+Starhub service that connect thousands of VPC and on-premises networks together
+
+\subsection{AWS Local Zones}
+AWS Local Zones are a type of AWS infrastructure deployment that places AWS compute, storage, database, and other 
+select services close to a large population, industry, and IT centers. With AWS Local Zones, you can easily run 
+applications that need single-digit millisecond latency closer to end-users in a specific geography.\\
 
 \section{AWS Global Accelerator}
 AWS Global Accelerator is a service that improves the availability and performance of your applications with local or global 
@@ -343,6 +421,7 @@ traffic by as much as 60\%.
 \subsection{AWS Shield}
 Shield standard is a free service activated by default.\\
 Shield Advance provide protection over DDOS attack 24/7 with a monthly fee of 3000\$ and more sophisticated attack.\\
+AWS Shield protect: \textbf{EC2, ELB, Route53, CloudFront and Global Accelerator}\\
 
 \subsection{AWS Firewall Manager}
 Manage security rules in all accounts of an AWS Organization.\\
@@ -355,10 +434,17 @@ AWS ACM is free of charge for public TLS certificates.\\
 \subsection{AWS Artifact}
 Portal that provides customers with on-demand access to AWS compliance documentation and AWS agreements.\\
 
+\subsection{AWS Architecture Center}
+The AWS Architecture Center provides reference architecture diagrams, vetted architecture solutions, 
+Well-Architected best practices, patterns, icons, etc.\\
+
 \subsection{Amazon GuardDuty}
 Intelligent Threat discovery to protect your AWS Account that uses Machine Learning algorithms, anomaly detection, 
 3rd party data.\\
 Can protect against CryptoCurrency attacks.\\
+Amazon GuardDuty is a threat detection service that monitors malicious activity and unauthorized behavior to protect your AWS 
+account. Amazon GuardDuty analyzes billions of events across your AWS accounts from AWS CloudTrail (AWS user and API activity 
+in your accounts), Amazon VPC Flow Logs (network traffic data), and DNS Logs (name query patterns).\\
 
 \subsection{AWS Security Hub}
 Central security tool to manage security across several AWS accounts and automate security checks with an
@@ -367,34 +453,65 @@ integrated dashboards showing current security and compliance status.\\
 \subsection{Amazon Detective}
 Amazon Detective analyzes, investigates, and quickly identifies the root cause of security issues or 
 suspicious activities.\\
+Amazon Detective can analyze events from multiple data sources such as:
+\textbf{Virtual Private Cloud (VPC) Flow Logs, AWS CloudTrail, and Amazon GuardDuty}
+
 
 \subsection{IAM Access Analyzer}
 Find out which resources are shared externally by defining Zone of Trust and notify when a resoure is accessed
 outside a zone of trust
 
-\section{Amazon Macie}
-Amazon Macie is a fully managed data security and data privacy service that uses machine learning and pattern matching to discover
-and protect your sensitive data in AWS. Macie automatically provides an inventory of Amazon S3 buckets including a list of 
-unencrypted buckets, publicly accessible buckets, and buckets shared with AWS accounts outside those you have defined in AWS 
-Organizations.
 
 \subsection{AWS Fault Injection Simulator (FIS)}
 A fully managed service for running fault injection experiments on AWS workloads based on Chaos Engineering that support
 EC2, ECS, EKS, RDS…
 
 \section{Machine Learning and AI}
+\subsection{Amazon Transcribe}
+You can use Amazon Transcribe to add speech-to-text capability to your applications.
+
+\subsection{Amazon Polly}
+You can use Amazon Polly to turn text into lifelike speech thereby allowing you to create applications that talk.
+
+\subsection{Amazon CodeGuru}
+Amazon CodeGuru is a developer tool that provides intelligent recommendations to improve code quality and identify 
+an application’s most expensive lines of code.\\
+
+\subsection{Shared responsability model}
+Under the AWS Shared Responsibility Model, customers are responsible for managing their data, 
+\textbf{including data encryption}.\\
+AWS trains AWS employees, but a customer must train their own employees.\\
+AWS is responsible for patching and fixing flaws within the infrastructure, but customers are responsible for 
+patching their guest operating system and applications.\\
+
+\subsection{Amazon Elastic Transcoder}
+Amazon Elastic Transcoder lets you convert media files that you have stored in Amazon Simple Storage Service (Amazon S3)
+into media files in the formats required by consumer playback devices. 
+For example, you can convert large, high-quality digital media files into formats that users can playback on mobile devices, 
+tablets, web browsers, and connected televisions.
+
+\subsection{Amazon Macie}
+Amazon Macie is a fully managed data security and data privacy service that uses machine learning and pattern matching to discover
+and protect your sensitive data in AWS. Macie automatically provides an inventory of Amazon S3 buckets including a list of 
+unencrypted buckets, publicly accessible buckets, and buckets shared with AWS accounts outside those you have defined in AWS 
+Organizations.\\
+Amazon Macie automatically detects a large and growing list of sensitive data types, including personally identifiable 
+information (PII)
+
 \subsection{Amazon Kendra}
 Fully managed document search service powered by Machine Learning that extract answers from within a document
 
 \subsection{Amazon Personalize}
 Fully managed ML-service to build apps with real-time personalized recommendations.\\
 
-\subsection{AWS Control Tower}
-Easy way to set up and govern a secure and compliant multi-account AWS environment based on best practices
-
 \subsection{AWS Resource Access Manager}
 Share AWS resources that you own with other AWS accounts or with any within your Organization by avoiding 
 resource duplication.\\
+
+\subsection{Amazon Comprehend}
+Amazon Comprehend is a natural-language processing (NLP) service that uses machine learning to uncover information in 
+unstructured data. Instead of combing through documents, the process is simplified and unseen information is easier 
+to understand.\\
 
 \subsection{Amazon Pinpoint}
 Scalable 2-way (outbound/inbound) marketing communications service that supports email, SMS, push, voice, 
@@ -411,6 +528,12 @@ for cloud based applications. Based on six pillars:
 	\item cost optimization
 	\item sustainability
 \end{itemize}
+
+\subsection{Well-Architected tool}
+The AWS Well-Architected Tool helps you review the state of your workloads and compares them to the latest AWS architectural best 
+practices. The tool is based on the AWS Well-Architected Framework, developed to help cloud architects application infrastructure.
+To use this free tool, available in the AWS Management Console, just define your workload and answer a set of questions.\\
+The AWS Well-Architected Tool then provides a plan on how to architect for the cloud using established best practices.\\
 
 \subsection{AWS CAF}
 AWS CAF groups its capabilities in six perspectives:\textbf{Business, People, Governance, Platform, Security, and
@@ -436,6 +559,11 @@ cloud workloads.\\
 \textbf{Operations Perspective} helps ensure that your cloud services are delivered at a level that meets the needs 
 of your busines
 
+\textbf{AWS Partner Solutions(formerly Quick Starts)}
+AWS Partner Solutions are automated reference deployments for key workloads on the AWS Cloud. Each Partner Solution 
+launches, configures, and runs the AWS compute, network, storage, and other services required to deploy a specific 
+workload on AWS, using AWS best practices for security and availability.\\
+
 \section{Service Health}
 While the AWS Health - Service Health Dashboard displays the general status of AWS services; the AWS Health - Your Account Health 
 Dashboard gives you a personalized view of the performance and availability of the AWS services underlying your AWS resources.
@@ -444,11 +572,6 @@ Dashboard gives you a personalized view of the performance and availability of t
 AWS Config is a service that enables you to assess, audit, and evaluate the configurations of your AWS resources. 
 Config \textbf{continuously monitors and records} your AWS resource configurations and allows you to automate the evaluation of 
 recorded configurations against desired configurations. Think resource-specific history, audit, and compliance; think Config.
-
-\section{Amazon GuardDuty}
-Amazon GuardDuty is a threat detection service that monitors malicious activity and unauthorized behavior to protect your AWS 
-account. Amazon GuardDuty analyzes billions of events across your AWS accounts from AWS CloudTrail (AWS user and API activity 
-in your accounts), Amazon VPC Flow Logs (network traffic data), and DNS Logs (name query patterns).\\
 
 \section{Amazon Compute Optimizer}
 AWS Compute Optimizer helps you identify the optimal AWS resource configurations, such as:
@@ -459,6 +582,14 @@ AWS Compute Optimizer helps you identify the optimal AWS resource configurations
 \end{itemize}
 
 \section{Other services}
+\subsection{AWS Controll Tower}
+Easy way to set up and govern a secure and compliant multi-account AWS environment based on best practices.\\
+AWS Control Tower is an AWS native service providing a pre-defined set of blueprints and guardrails to help customers 
+implement a landing zone for new AWS accounts.\\
+AWS Control Tower is designed to provide an easy, self-service setup experience and an interactive user interface for 
+ongoing governance with guardrails. While Control Tower automates creation of a new landing zone with pre-configured blueprints
+
+
 \subsection{AWS Infrastructure Composer}
 Visually design and build serverless applications quickly on AWS and allow to deploy AWS infrastructure code without needing 
 to be an expert in AWS.\\
@@ -479,9 +610,50 @@ and availability.\\
 AWS Cost \& Usage Report (AWS CUR) contains the most comprehensive set of cost and usage data available. You can receive reports 
 that break down your costs by the hour or month, by product or product resource, or by tags that you define yourself.\\
 AWS updates the report in your bucket once a day in comma-separated value (CSV) format.\\
+\textbf{CUR is used to publish your AWS billing reports to an Amazon Simple Storage Service (Amazon S3) bucket that you own}
+
+\subsection{AWS Price Calculator}
+Power/Cooling are included in the server, storage, and network cost.
+
+
+\subsection{AWS Cost Explorer}
+AWS Cost Explorer has an easy-to-use interface that lets you visualize, understand, and manage your AWS costs and usage over 
+time. AWS Cost Explorer includes a default report that helps you visualize the costs and usage associated with your top five 
+cost-accruing AWS services, and gives you a detailed breakdown of all services in the table view.\\
+AWS Cost Explorer also supports forecasting to get a better idea of what your costs and usage may look like in the future.\\
 
 Every AWS account provides its own invoice end of the month. You can get separate invoices for development and 
 production environments by setting up separate AWS accounts for each environment.\\
+
+EC2 Savings Plan -> Up to 72\% discount compared to On-Demand\\
+Compute Savings Plan -> Up to 66\% discount compared to On-Demand for EC2, fargate and lambda\\
+\section{CloudWatch}
+AWS CloudWatch is able to monitor the following metrics:
+\begin{itemize}
+	\item Application performance
+	\item Resource utilization
+	\item System-wide visibility
+	\item Unified operational health
+\end{itemize}
+
+\section{AWS DataSync}
+AWS DataSync is a secure online data transfer service that simplifies, automates, and accelerates copying 
+terabytes of data to and from AWS storage services. Easily migrate or replicate large data sets without having 
+to build custom solutions or oversee repetitive tasks.\\
+You can use AWS DataSync for ongoing transfers from on-premises systems into or out of AWS for processing. 
+DataSync can help speed up your critical hybrid cloud storage workflows in industries that need to move active 
+files into AWS quickly.\\
+
+\section{CloudEndure Disaster Recovery}
+CloudEndure Disaster Recovery, available from the AWS Marketplace, continuously replicates server-hosted applications 
+and server-hosted databases from any source into AWS using block-level replication of the underlying server. 
+CloudEndure Disaster Recovery enables you to use AWS Cloud as a disaster recovery Region for an on-premises workload and its 
+environment. It can also be used for disaster recovery of AWS hosted workloads if they consist only of 
+applications and databases hosted on EC2 (i.e. not RDS).\\
+
+You may see use-cases asking you to select one of CloudWatch vs CloudTrail vs Config. Just remember this thumb rule:\\
+Think resource performance monitoring, events, and alerts; think CloudWatch.\\
+Think resource-specific change history, audit, and compliance; think Config.\\
 
 \printindex
 \end{document}

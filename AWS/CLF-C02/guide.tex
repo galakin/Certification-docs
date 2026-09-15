@@ -67,7 +67,9 @@ Platform as a Service (PaaS) as a service removes the need for organizations to 
 (usually hardware and operating systems) and allow you to focus on the \textbf{deployment and management of your applications}. 
 This helps you be more efficient as you don’t need to worry about resource procurement, capacity planning, software maintenance
 , patching, or any of the other undifferentiated heavy lifting involved in running your application.\\
-Thinsk PaaS thin AWS, Azure and Openshift
+Thinsk PaaS thin AWS, Azure and Openshift.
+
+\textbf{Available Zone (AZ)} are \textbf{ONE} or mode discrete datacenter in the same \textbf{region}
 
 \section{IAM}
 AWS IAM is one of the few \textbf{global} services\\
@@ -181,8 +183,11 @@ such as backup or disaster recovery use cases.\\
 Ensure that only the correct people have access to your S3 bucket
 
 \subsection{AWS Snowball}
-On-edge device to \textbf{collect and process} data and \textbf{migrate} them on AWS
+On-edge device to \textbf{collect and process} data and \textbf{migrate} them on AWS.\\
 
+\subsection{AWS OpsHub}
+AWS OpsHub is a graphical user interface you can use to manage your AWS Snowball devices, enabling you to 
+rapidly deploy edge computing workloads and simplify data migration to the cloud.\\
 
 \subsection{AWS Storage Gateway}
 Brigde between the on premise data and AWS data storage option (S3, EBS,...).\\
@@ -236,7 +241,8 @@ Redshift can be deployed with serverless capability
 
 \subsection{Amazon EMR}
 Elastic MapReduce DB service that manage hundred of EC2 instances with the possibility to fire "spot instances" 
-used for processing large batch of data streamlined from ML and big data operations.
+used for processing large batch of data streamlined from ML and big data operations.\\
+Use cases: data processing, machine learning, web indexing, big data…
 
 \subsection{Amazon Athena}
 Serverless database service used to analyze big batch of data with SQL query from object stored on S3
@@ -262,7 +268,9 @@ Virtual servers, storage, databases, and networking.\\
 Good for people with little cloud experience
 Amazon Lightsail is an easy-to-use cloud platform that offers you everything needed to build an application 
 or website, plus a cost-effective, monthly plan. Amazon Lightsail offers several preconfigured, one-click-to-launch operating 
-systems, development stacks, and web applications
+systems, development stacks, and web applications.\\
+Has high availability but no auto-scaling, limited AWS integrations\\
+Use case: Dev/Test env, Website and Simple web app\\
 
 \section{Infrastructure at scale}
 
@@ -277,6 +285,7 @@ SSM Service help manage the EC2 instance and on-premise server.\\
 You can use AWS Budgets to set reservation utilization or coverage targets and receive alerts when your 
 utilization drops below the threshold you define.\\
 Under AWS Budget you can create reservation for: \textbf{Cost Budget, Reservation Budget and Usage Budget}
+
 \section{AWS Trusted Advisor}
 AWS Trusted Advisor is an online tool that provides you real-time guidance to help you provision your resources 
 following \textbf{AWS best practices} on:
@@ -287,12 +296,18 @@ following \textbf{AWS best practices} on:
 	\item service limits
 	\item performance improvement.
 \end{itemize}
+For the Business \& Enterprise Support plan:
+\begin{itemize}
+	\item Full Set of Checks
+	\item Programmatic Access using AWS Support API
+\end{itemize}
 
 \section{CloudTrail}
 By default, the log files delivered by CloudTrail to your S3 bucket are encrypted using server-side encryption with Amazon S3 managed keys (SSE-S3)
 CloudTrail events provide a history of both API and non-API account activity made through the \textbf{AWS Management Console}, 
 AWS SDKs, command line tools, and other AWS services.\\
 Think account-specific activity and audit; think CloudTrail.\\
+\textbf{Management Event} are logged by default on CloudTrail, while data and Insight must be enabled.\\
 
 \section{AWS Support}
 You should use the \textbf{AWS Developer Support} plan if you are testing or doing early development on AWS and want the ability 
@@ -316,6 +331,9 @@ APN Technology Partners provide hardware, connectivity services, or software sol
 WAF protect against common exploits at \textbf{Layer 7}.\\
 AWS WAF can be deployed on the following services:
 \textbf{Amazon CloudFront, Application Load Balancer, Amazon API Gateway, AWS AppSync}
+
+\subsection{AWS Network Firewall}
+Protect your entire Amazon VPC from Layer 3 to Layer 7 protection, for any direction you can inspect
 
 \section{Amazon Shield}
 AWS Shield Advanced provides expanded DDoS attack protection for web applications running on the following resources: 
@@ -350,7 +368,7 @@ CloudWatch}\\
 ALB - HTTP/HTPPS traffic\\
 NLB - TCP/UDP traffic\\
 
-A gateway endpoint is a gateway that you specify as a target for a route in your route table for traffic 
+A \textbf{VPC Gateway Endpoint} is a gateway that you specify as a target for a route in your route table for traffic 
 destined to a supported AWS service. The following AWS services are supported:
 \begin{itemize}
 	\item Amazon Simple Storage Service (Amazon S3)
@@ -358,6 +376,9 @@ destined to a supported AWS service. The following AWS services are supported:
 \end{itemize}
 You may see a question around this concept in the exam. Just remember that only Amazon S3 and Amazon DynamoDB 
 support VPC gateway endpoint. All other services that support VPC Endpoints use a VPC interface endpoint.\\
+\textbf{VPC Endpoint Interface} are used for the remaining AWS services
+
+\textbf{NACL rule only inclue IP adress}.\\
 
 \subsection{Internet Gateway}
 An Internet Gateway is a horizontally scaled, redundant, and highly available VPC component that allows communication between instances 
@@ -365,12 +386,15 @@ in your VPC and the internet. Therefore, it imposes no availability risks or ban
 Internet Gateway communication \textbf{use the public internet}.\\
 
 \subsection{NAT Gateways}
-NAT Gateways (AWS-managed) and NAT Instances (self-managed) allow your instances in your Private Subnets
+NAT Gateways \textbf{(AWS-managed)} and NAT Instances \textbf{(self-managed)} allow your instances in your Private Subnets
 to access the internet while remaining private.\\
+\textbf{NAT Gateway are managed by AWS}
 
 \subsection{AWS Private Link}
 \textbf{AWS PrivateLink} enables private connectivity between VPCs and supported AWS services without traffic traversing the 
-public internet. It ensures secure communication for applications and services.
+public internet. It ensures secure communication for applications and services.\\
+Most secure \& scalable way to expose a service to 1000s of VPCs.\\
+Does not require VPC peering, internet gateway, NAT, route tables.., but requires a network load balancer and ENI.\\
 
 \subsection{AWS Site-to-site}
 AWS Site-to-Site VPN creates a secure connection between your data center or branch office and your AWS cloud resources. 
@@ -396,10 +420,6 @@ VPC Peering connection is \textbf{not transitive}\\
 AWS Direct Connect creates a dedicated private connection from a remote network to your VPC. This is a private 
 connection and does not use the public internet. Takes at least a month to establish this connection. 
 \textbf{AWS Direct Connect cannot be used to interconnect VPCs}.
-
-\subsection{AWS PrivateLink}
-Most secure \& scalable way to expose a service to 1000s of VPCs.\\
-Does not require VPC peering, internet gateway, NAT, route tables.., but requires a network load balancer and ENI.\\
 
 \subsection{Transit Gateway}
 Starhub service that connect thousands of VPC and on-premises networks together
@@ -429,7 +449,9 @@ Rules are applied to new resources as they are created across all and future acc
 
 Encryption is enabled by defoult on \textbf{CloudTrail log, AWS S3 glacier and Storage Gateway}.\\
 
-AWS ACM is free of charge for public TLS certificates.\\
+\subsection{AWS Certificate Manager}
+ACM le t you provision manage and deploy \textbf{TLS/SSL} certificate for AWS service.\\
+ACM is free of charge for public TLS certificates.\\
 
 \subsection{AWS Artifact}
 Portal that provides customers with on-demand access to AWS compliance documentation and AWS agreements.\\
@@ -449,6 +471,10 @@ in your accounts), Amazon VPC Flow Logs (network traffic data), and DNS Logs (na
 \subsection{AWS Security Hub}
 Central security tool to manage security across several AWS accounts and automate security checks with an
 integrated dashboards showing current security and compliance status.\\
+Automatically aggregates alerts in predefined or personal findings formats from various
+AWS services \& AWS partner tools.\\
+Must first enable the AWS Config Service.\\
+Security Hub can aggregates information from service like Macie, GuardDuty, Inspector, ...\\
 
 \subsection{Amazon Detective}
 Amazon Detective analyzes, investigates, and quickly identifies the root cause of security issues or 
@@ -491,8 +517,8 @@ For example, you can convert large, high-quality digital media files into format
 tablets, web browsers, and connected televisions.
 
 \subsection{Amazon Macie}
-Amazon Macie is a fully managed data security and data privacy service that uses machine learning and pattern matching to discover
-and protect your sensitive data in AWS. Macie automatically provides an inventory of Amazon S3 buckets including a list of 
+Amazon Macie is a fully managed data security and data privacy service that uses machine learning and pattern matching to \textbf{discover
+and protect your sensitive data in AWS}. Macie automatically provides an inventory of Amazon S3 buckets including a list of 
 unencrypted buckets, publicly accessible buckets, and buckets shared with AWS accounts outside those you have defined in AWS 
 Organizations.\\
 Amazon Macie automatically detects a large and growing list of sensitive data types, including personally identifiable 
@@ -517,6 +543,13 @@ to understand.\\
 Scalable 2-way (outbound/inbound) marketing communications service that supports email, SMS, push, voice, 
 and in-app messaging.\\
 Use cases: run campaigns by sending marketing, bulk, transactional SMS messages
+
+
+\subsection{Amazon Forecast}
+Amazon Forecast is a fully managed service that uses machine learning to deliver highly accurate forecasts. 
+Amazon Forecast can be used to forecast any time-series data, such as retail demand, manufacturing demand, travel demand, revenue, 
+IT capacity, logistics, and web traffic.\\
+
 \section{Well-architected framework}
 The AWS Well-Architected Framework provides guidance on building secure, high-performing, resilient, and efficient infrastructure 
 for cloud based applications. Based on six pillars:
@@ -579,6 +612,7 @@ AWS Compute Optimizer helps you identify the optimal AWS resource configurations
 	\item Amazon EC2 instance types
 	\item Amazon EBS volume configurations
 	\item AWS Lambda function memory sizes
+	\item Amazon EC2 ASG
 \end{itemize}
 
 \section{Other services}
@@ -643,6 +677,17 @@ to build custom solutions or oversee repetitive tasks.\\
 You can use AWS DataSync for ongoing transfers from on-premises systems into or out of AWS for processing. 
 DataSync can help speed up your critical hybrid cloud storage workflows in industries that need to move active 
 files into AWS quickly.\\
+
+\subsection{AWS Backup}
+Centralized service for the backup rutine of various AWS service with \textbf{Point-in-time} recovery capability.\\
+With \textbf{Cross-Region} and \textbf{Cross-Account} backup capability
+
+\subsection{Migration Evaluator}
+Helps you build a data-driven business case for migration to AWS by providing a clear baseline of what your organization 
+is running today.\\
+Work by installing Agentless Collector to conduct broad-based discovery and analyze current state, define target state, 
+then develop migration plan.\\
+
 
 \section{CloudEndure Disaster Recovery}
 CloudEndure Disaster Recovery, available from the AWS Marketplace, continuously replicates server-hosted applications 

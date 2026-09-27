@@ -1,0 +1,50 @@
+\documentclass[12pt, letterpaper, twoside]{article}
+\usepackage[utf8]{inputenc}
+\newcommand{\mycomment}[1]{}
+\usepackage{imakeidx}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+
+\title{RedHat Certified System Administrator}
+\author{Jacopo Pela}
+%\date{Luglio 2023}
+\usepackage{hyperref}%
+\makeindex
+\begin{document}
+
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Linux Distributions}
+Linux Distributions or distro are compleate system build around \textbf{linux kernel}\\
+Linux distribution are differentieted by what sit arount the linux kernel\\
+Different linux distro use different linux package manager to \textbf{install, update and remove} software form a centralized controlled source.
+For RedHat we will talk about \textbf{rpm}.\\
+Almost anything in a linux distribution is \textbf{Open Source}.\\
+All linux distros share core linux tools like databases and programming languages.\\
+RedHat follow the \textbf{File Hierarchy Standard (FHS)} for default file position.\\
+RedHat releases new major versions every \textbf{three year}. Leap help you with a smooth transition from one version to the next one.
+Version support come in three phases:
+\begin{itemize}
+	\item Full support for the first 5 years
+	\item Maintenance support for the next 5 years
+	\item Extended update support for selected security patches
+\end{itemize}
+
+\section{Introduction to the shell}
+Commands are sunned on a shell and the default shell is bash.\\
+Basic structure of a command is:\\
+
+\centering{command <options> <arguments>}\\
+
+Option begin with a dash ($-$) or a double dash ($--$)\\
+Options influence how the command run, while argument are the things you want your command to work on\\
+
+\section{Documentation}
+
+\printindex
+\end{document}

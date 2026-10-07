@@ -45,6 +45,34 @@ Option begin with a dash ($-$) or a double dash ($--$)\\
 Options influence how the command run, while argument are the things you want your command to work on\\
 
 \section{Documentation}
+man pages are already on the system and tell you how commands work.\\
+To access a man page for a command type: man <command>\\
+Use man 5 <command> to access the man page for the command configuration file
 
+\section{Linux Directory}
+Linux system have a root directory "/", inside the root live predefined directory used to store linux file:§
+\begin{itemize}
+	\item home: used to store account user specific files 
+	\item etc: extended text configuration store che configuration file for yor system
+	\item var: is where you find the variable files
+	\item usr: store user specific program
+	\item lib64: is the directory used to store common library
+	\item tmp: store the temporary file cleaned up periodically
+	\item root: is the directory for the root user
+\end{itemize}
+
+\section{Basic File Management}
+
+\section{Using Image Mode with bootc}
+Point server to images with complete OS app and configuration.\\
+Produce brand new image for running application.\\
+Use the bootc image with systemd command to deploy and run local application.\\
+
+\section{Image builder}
+Golden images are perfect template to build upon your custom image. They are a clean and 
+consistent starting point for any server or VM.\\
+\textbf{RHEL Image builder} is the cli tool use to manage and lauch image on your local environment.\\
+
+\section{Vulnerability Management}
 \printindex
 \end{document}
